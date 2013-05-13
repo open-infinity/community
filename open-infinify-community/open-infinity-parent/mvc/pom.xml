@@ -11,8 +11,8 @@
 	<version>2.0.0</version>
 	<packaging>war</packaging>
 	<properties>
-		<bas1.host>ec2-54-228-63-132.eu-west-1.compute.amazonaws.com</bas1.host>
-		<sp.keyfile>/Users/leinpilk/Development/src/github/codecamp/training-hello-base-repository/instance790.key</sp.keyfile>
+		<bas1.host></bas1.host>
+		<sp.keyfile></sp.keyfile>
 		<bas.deployDir>/opt/openinfinity/2.0.0/tomcat/webapps</bas.deployDir>
 		<org.slf4j-version>1.5.10</org.slf4j-version>
 	</properties>
