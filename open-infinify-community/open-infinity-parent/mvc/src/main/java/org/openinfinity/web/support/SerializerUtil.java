@@ -13,23 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.openinfinity.domain.service;
+package org.openinfinity.web.support;
 
-import java.util.Collection;
+import java.io.Writer;
 
-import org.openinfinity.domain.entity.Product;
-import org.springframework.stereotype.Component;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Business rule specification for product.
+ * Serializer for JSON.
  * 
  * @author Ilkka Leinonen
  */
-@Component
-public class ProductSpecification {
-	
-	public boolean isNotEligibleForCreation(Product product, Collection<Product> products) {
-		return products.contains(product);
-	}
+public class SerializerUtil {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SerializerUtil.class);
+	
+	public static void jsonSerialize(Writer writer, Object serializable) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.writeValue(writer, serializable);
+		} catch (Throwable t) {
+			LOGGER.error(t.getMessage());
+		} 
+	}
+	
 }

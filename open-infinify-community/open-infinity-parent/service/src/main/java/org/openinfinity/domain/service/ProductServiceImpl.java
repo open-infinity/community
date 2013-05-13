@@ -44,9 +44,9 @@ public class ProductServiceImpl implements ProductService {
 	@AuditTrail
 	public String create(Product product) {
 		Collection<Product> products = productRepository.loadByName(product.getName());
-		if (productSpecification.isEligibleForCreation(product, products)) {
+		if (productSpecification.isNotEligibleForCreation(product, products)) {
 			ExceptionUtil.throwBusinessViolationException(
-				"Product allready exists: " + product.getName(), 
+				"Product already exists: " + product.getName(), 
 				ExceptionLevel.INFORMATIVE, 
 				ProductService.UNIQUE_EXCEPTION_PRODUCT_ALREADY_EXISTS);
 		}

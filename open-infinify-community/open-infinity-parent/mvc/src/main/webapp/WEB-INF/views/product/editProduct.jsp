@@ -5,7 +5,6 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 		<div class="container">
-<%-- 			<%@ include file="/WEB-INF/views/error/generic_error.jsp"%> --%>
 			<br />
 			<h2>
 				Edit Product
@@ -64,20 +63,30 @@
 					$.each($('#productModel').serializeArray(), function(i, field) {
 					    fieldValidated(field.name, { valid : true });
 					});
-					}, 
-				function(data){
+				}, 
+				function(error) {
 					// Set default view
 					$.each($('#productModel').serializeArray(), function(i, field) {
 					    fieldValidated(field.name, { valid : true });
 					});
 					// Set error view
-					var obj = jQuery.parseJSON(data.responseText);
+					var obj = jQuery.parseJSON(error.responseText);
 					var errorCounter = 0;
+					var businessViolation = false;
 					$.each(obj, function(key, val) {
-						fieldValidated(key, { valid : false, message : val});
-						errorCounter++;
+						if ($.isArray(val)) {
+							var realArray = $.makeArray(val);
+							$.map( realArray, function(item, i) {
+								document.getElementById('statusbox').innerHTML=item;
+								businessViolation = true;
+							});
+						} else {
+							fieldValidated(key, { valid : false, message : val});
+							errorCounter++;
+						}
 					});
-					setStatusField("Product under editing contains " + errorCounter + " warning messages.");
+					if (!businessViolation)
+						setStatusField("Product under editing contains " + errorCounter + " warning messages.");
 				});
 				return false;				
 			});
