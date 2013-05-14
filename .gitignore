@@ -1,1 +1,3 @@
 open-infinify-community/codecamps/helsinki-university-2013Q2/B/open-infinity-parent/repository/src/main/resources/META-INF/spring/mongo-repository-context.xml
+*.iml
+.idea/
