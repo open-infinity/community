@@ -1,0 +1,13 @@
+
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/mvc/pom.xml
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/repository/src/main/resources/META-INF/spring/mongo-repository-context.xml
+
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/.settings/
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/entity/.gitignore
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/entity/.settings/
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/mvc/.gitignore
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/mvc/.settings/
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/repository/.gitignore
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/repository/.settings/
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/service/.gitignore
+.community/open-infinify-community/codecamps/helsinki-university-2013Q2/C/open-infinity-parent/service/.settings/
