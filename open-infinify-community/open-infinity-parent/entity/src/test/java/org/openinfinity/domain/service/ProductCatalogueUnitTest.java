@@ -40,10 +40,10 @@ public class ProductCatalogueUnitTest {
 	public void setUp() {
 		productSpecification = new ProductSpecification();
 		products = new ArrayList<Product>();
-		populateProducts(products);
+		populateProducts();
 	}
 	
-	private void populateProducts(Collection<Product> products2) {
+	private void populateProducts() {
 		for (int index = 0 ; index < 10 ; index++) {
 			Product product = new Product("Test Name " + index, "Test Description " + index, "Company " + index, new BigDecimal("1.23"));
 			product.setId("" + System.currentTimeMillis());
@@ -54,9 +54,8 @@ public class ProductCatalogueUnitTest {
 	@Test
 	public void givenKnownProductWhenCreatingNewProductThenBusinessRuleMustAcknowledgeDublicateItems() {
 		Product product = new Product("Test Name ", "Test Description ", "Company ", new BigDecimal("1.23"));
-		boolean expectedFalse = productSpecification.isEligibleForCreation(product, products);
+		boolean expectedFalse = productSpecification.isNotEligibleForCreation(product, products);
 		assertFalse(expectedFalse);
 	}
-	
 	
 }
