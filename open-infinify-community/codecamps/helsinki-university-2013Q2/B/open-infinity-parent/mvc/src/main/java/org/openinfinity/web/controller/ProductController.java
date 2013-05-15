@@ -34,7 +34,9 @@ import org.openinfinity.core.exception.AbstractCoreException;
 import org.openinfinity.core.exception.ApplicationException;
 import org.openinfinity.core.exception.BusinessViolationException;
 import org.openinfinity.core.exception.SystemException;
+import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
+import org.openinfinity.domain.service.CatalogueService;
 import org.openinfinity.domain.service.ProductService;
 import org.openinfinity.web.model.ProductModel;
 import org.openinfinity.web.support.SerializerUtil;
@@ -62,6 +64,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+
+    @Autowired
+    private CatalogueService catalogueService;
 	
 	@Autowired
 	private Validator validator;
@@ -107,6 +112,7 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String createNewProduct(Model model) {
 		model.addAttribute(new ProductModel());
+        model.addAttribute("catalogs", catalogueService.loadAll());
 		return "product/editProduct";
 	}
 	
@@ -116,8 +122,12 @@ public class ProductController {
 	public @ResponseBody Map<String, ? extends Object> create(@Valid @RequestBody ProductModel productModel, HttpServletResponse response) {
 		Set<ConstraintViolation<Product>> failures = validator.validate(productModel.getProduct());
 		if (failures.isEmpty()) {
-			String id = productService.create(productModel.getProduct());
-			return new ModelMap("id", id);
+			Product product = productModel.getProduct();
+            Catalogue catalogue = catalogueService.loadById(productModel.getCatalogueId());
+            catalogue.addProduct(product);
+            catalogueService.update(catalogue);
+            //String id = product.getId(); // productService.create(productModel.getProduct());
+			return new ModelMap("id", product.getId());
 		} else {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return getValidationMessages(failures);
