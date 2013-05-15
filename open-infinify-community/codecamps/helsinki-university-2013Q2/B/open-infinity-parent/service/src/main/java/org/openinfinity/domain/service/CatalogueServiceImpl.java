@@ -15,17 +15,12 @@
  */
 package org.openinfinity.domain.service;
 
-import org.openinfinity.core.annotation.AuditTrail;
-import org.openinfinity.core.annotation.Log;
-import org.openinfinity.core.exception.ExceptionLevel;
-import org.openinfinity.core.util.ExceptionUtil;
 import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
-import org.openinfinity.domain.repository.ProductRepository;
+import org.openinfinity.domain.repository.CRUDRepository;
+import org.openinfinity.domain.repository.CatalogueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 
 /**
  * Product service implementation with specification.
@@ -33,8 +28,16 @@ import java.util.Collection;
  * @author Ilkka Leinonen
  */
 @Service
-public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue> implements CatalogueService{
+public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue, CatalogueRepository> implements CatalogueService{
 
+    public CatalogueServiceImpl(){
+
+    }
+
+    @Autowired
+    public CatalogueServiceImpl(CatalogueRepository catalogueRepository) {
+        super(catalogueRepository);
+    }
 
     @Override
     public void addProductToCatalogue(Product product, Catalogue catalogue) {

@@ -35,8 +35,6 @@ import java.util.Collection;
 @Repository
 public class CatalogueRepositoryMongoDBImpl extends CRUDRepositoryMongoDBImpl<Catalogue> implements CatalogueRepository {
 
-	@Autowired
-	MongoTemplate mongoTemplate;
 
 
 }

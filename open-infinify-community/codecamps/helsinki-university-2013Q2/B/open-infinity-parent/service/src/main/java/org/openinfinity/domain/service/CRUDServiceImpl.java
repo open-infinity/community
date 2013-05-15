@@ -15,6 +15,8 @@
  */
 package org.openinfinity.domain.service;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Collection;
 
 import org.openinfinity.core.annotation.AuditTrail;
@@ -29,19 +31,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Product service implementation with specification.
  * 
  * @author Ilkka Leinonen
  */
 @Service
-public class CRUDServiceImpl<T extends RepositoryItem> implements CRUDService<T> {
+public class CRUDServiceImpl<T extends RepositoryItem, T_REPO extends CRUDRepository<T>> implements CRUDService<T> {
 
 	@Autowired
 	private ProductSpecification productSpecification;
-	
-	@Autowired
+
 	private CRUDRepository<T> crudRepository;
+
+    public CRUDServiceImpl() {
+    }
+
+    public CRUDServiceImpl(T_REPO repository) {
+        this.crudRepository = repository;
+    }
 
 
     @Override

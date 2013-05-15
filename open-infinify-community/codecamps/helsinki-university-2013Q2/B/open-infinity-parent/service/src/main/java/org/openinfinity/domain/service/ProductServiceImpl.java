@@ -20,9 +20,8 @@ import org.openinfinity.core.annotation.Log;
 import org.openinfinity.core.exception.ExceptionLevel;
 import org.openinfinity.core.util.ExceptionUtil;
 import org.openinfinity.domain.entity.Product;
-import org.openinfinity.domain.repository.CRUDRepository;
+import org.openinfinity.domain.repository.CatalogueRepository;
 import org.openinfinity.domain.repository.ProductRepository;
-import org.openinfinity.domain.repository.RepositoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +33,7 @@ import java.util.Collection;
  * @author Ilkka Leinonen
  */
 @Service
-public class ProductServiceImpl extends CRUDServiceImpl<Product> implements ProductService{
+public class ProductServiceImpl extends CRUDServiceImpl<Product, ProductRepository> implements ProductService{
 
 	@Autowired
 	private ProductSpecification productSpecification;
@@ -42,7 +41,18 @@ public class ProductServiceImpl extends CRUDServiceImpl<Product> implements Prod
     @Autowired
     private ProductRepository productRepository;
 
-    @Override
+    public ProductServiceImpl(){
+
+    }
+
+    @Autowired
+    public ProductServiceImpl(ProductRepository productRepository) {
+        super(productRepository);
+    }
+
+
+
+  @Override
     @Log
     @AuditTrail
     public String create(Product product) {
