@@ -21,6 +21,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -67,5 +68,15 @@ public class CatalogueController {
         return "catalogue/listAll";
     }
 
+
+    @RequestMapping(value = "catalogue/delete/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable("id") String itemId, Model model){
+
+
+
+         catalogueService.delete(catalogueService.loadById(itemId));
+
+         return "catalogue/deleted";
+    }
 
 }
