@@ -81,7 +81,7 @@ public class CatalogueController {
     public String view(@PathVariable("id") String itemId, Model model){
 
          model.addAttribute("produtclist", catalogueService.listAllProductsInCatalogue(catalogueService.loadById(itemId)));
-         model.addAttribute("catalogname",itemId);
+         model.addAttribute("name",itemId);
 
         return "catalogue/view";
     }

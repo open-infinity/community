@@ -4,12 +4,12 @@
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-    <h2>${"catalogname"} contains:</h2>
+    <h2><c:out value="${name}"/> contains:</h2>
     <table>
         <c:forEach var="o" items="${productlist}">
 
             <tr>
-                <td{o}</td>
+                <td>${o}</td>
             </tr>
         </c:forEach>
     </table>
