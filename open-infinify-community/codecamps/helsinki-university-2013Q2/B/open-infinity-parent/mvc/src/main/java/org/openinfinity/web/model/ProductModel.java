@@ -29,7 +29,9 @@ import org.openinfinity.domain.entity.Product;
 public class ProductModel extends Product {
 
 	private Product product;
-	
+
+    private String catalogue;
+
 	private Map<String, Collection<String>> errorStatuses = new HashMap<String, Collection<String>>();
 	
 	public void addErrorStatuses(String level, Collection<String> ids) {
@@ -59,5 +61,8 @@ public class ProductModel extends Product {
 		product.setPrice(super.getPrice());
 		return product;
 	}
-	
+
+    public String getCatalogueId() {
+        return catalogue;
+    }
 }

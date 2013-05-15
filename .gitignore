@@ -2,6 +2,7 @@ open-infinify-community/codecamps/helsinki-university-2013Q2/B/open-infinity-par
 *.iml
 .idea/
 .c
+target/
 
 # Eclipse project files
 .classpath

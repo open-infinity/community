@@ -38,6 +38,15 @@
 							<td><form:errors path="price" /></td>
 						</tr>
 						<tr>
+                            <td><form:label for="catalogue" path="catalogue" cssErrorClass="catalogue">Catalogue</form:label></td>
+                            <td>
+                                <form:select path="catalogue">
+                                    <form:options items="${catalogs}" itemValue="id" itemLabel="id"/>
+                                </form:select>
+                            </td>
+                            <td><form:errors path="catalogue" /></td>
+						</tr>
+						<tr>
 							<td>
 								<p>	
 									<form:hidden path="id" id="id" />
