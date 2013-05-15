@@ -57,6 +57,7 @@ public class CatalogueController {
     @RequestMapping(value = "/catalogue")
     public String ManageCatalogues(Model model){
 
+
         Catalogue c = new Catalogue();
         catalogueService.create(c);
 
@@ -77,6 +78,15 @@ public class CatalogueController {
          catalogueService.delete(catalogueService.loadById(itemId));
 
          return "catalogue/deleted";
+    }
+
+    @RequestMapping(value = "catalogue/view/{id}")
+    public String view(@PathVariable("id") String itemId, Model model){
+
+         model.addAttribute("produtclist",catalogueService.listAllProductsInCatalogue(catalogueService.loadById(itemId)));
+
+
+        return "catalogue/view";
     }
 
 }

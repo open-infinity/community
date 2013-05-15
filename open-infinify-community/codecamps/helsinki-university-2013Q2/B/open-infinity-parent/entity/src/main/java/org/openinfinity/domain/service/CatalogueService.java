@@ -29,6 +29,7 @@ public interface CatalogueService extends CRUDService<Catalogue> {
 
     public void addProductToCatalogue(Product product, Catalogue catalogue);
     public void removeProductFromCatalogue(Product product, Catalogue catalogue);
+    public Collection<Product> listAllProductsInCatalogue(Catalogue catalogue);
 
 
 }

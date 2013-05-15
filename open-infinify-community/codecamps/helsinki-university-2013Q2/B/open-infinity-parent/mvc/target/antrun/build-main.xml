@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <scp keyfile="/cs/fs/home/puuska/.ssh/id_rsa.toas" trust="true" localFile="/cs/fs/home/puuska/toas2/community/open-infinify-community/codecamps/helsinki-university-2013Q2/B/open-infinity-parent/mvc/target/shoppinglist.war" remoteTodir="ec2-user@ec2-54-216-30-32.eu-west-1.compute.amazonaws.com:/opt/openinfinity/2.0.0/tomcat/webapps"/>
+</target>
+</project>

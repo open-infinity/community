@@ -15,7 +15,5 @@
         </c:forEach>
     </table>
 
-
-
 <%@ include file="/WEB-INF/views/common/validation_scripts.jsp" %>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

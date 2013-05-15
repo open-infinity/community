@@ -17,11 +17,11 @@ package org.openinfinity.domain.service;
 
 import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
-import org.openinfinity.domain.repository.CRUDRepository;
 import org.openinfinity.domain.repository.CatalogueRepository;
-import org.openinfinity.domain.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 /**
  * Product service implementation with specification.
@@ -54,5 +54,11 @@ public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue, CatalogueRe
     public void removeProductFromCatalogue(Product product, Catalogue catalogue) {
         catalogue.removeProduct(product);
         catalogueRepository.update(catalogue);
+    }
+
+    @Override
+    public Collection<Product> listAllProductsInCatalogue(Catalogue catalogue) {
+        return(catalogue.getProducts());
+
     }
 }
