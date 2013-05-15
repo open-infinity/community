@@ -25,18 +25,8 @@ import org.openinfinity.domain.entity.Product;
  * 
  * @author Ilkka Leinonen
  */
-public interface ProductService {
+public interface ProductService extends CRUDService<Product> {
 	
-	public static final String UNIQUE_EXCEPTION_PRODUCT_ALREADY_EXISTS = "localized.exception.product.already.exists"; 
-	
-	public String create(Product product);
-	
-	public void update(Product product);
-	
-	public Collection<Product> loadAll();
-	
-	public Product loadById(String id);
-	
-	public void delete (Product product);
+	public static final String UNIQUE_EXCEPTION_PRODUCT_ALREADY_EXISTS = "localized.exception.product.already.exists";
 
 }

@@ -15,25 +15,17 @@
  */
 package org.openinfinity.domain.repository;
 
-import java.util.Collection;
-
+import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
 
+import java.util.Collection;
+
 /**
- * Catalogue repository interface.
+ * Product repository interface.
  * 
  * @author Ilkka Leinonen
  */
-public interface CatalogueRepository {
-	
-	Collection<Product> queryByName(String name);
-	
-	Product queryById(String id);
-	
-	Product addProductToCatalogue(Product product);
-	
-	Product updateProductToCatalogue(Product product);
-	
-	void deleteProductFromCatalogue(Product product);
-	
+public interface CatalogueRepository extends CRUDRepository<Catalogue>{
+
+
 }

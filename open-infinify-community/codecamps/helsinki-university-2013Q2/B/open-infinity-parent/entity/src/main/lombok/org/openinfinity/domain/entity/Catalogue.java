@@ -22,6 +22,8 @@ import java.util.Collections;
 import lombok.Data;
 
 import org.openinfinity.core.annotation.NotScript;
+import org.openinfinity.domain.repository.CRUDRepository;
+import org.openinfinity.domain.repository.RepositoryItem;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -32,7 +34,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 @Data
-public class Catalogue {
+public class Catalogue implements RepositoryItem {
 	
 	@Id @NotScript
 	private String id;
@@ -43,4 +45,19 @@ public class Catalogue {
 		this.products.add(product);
 	}
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Collection<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Collection<Product> products) {
+        this.products = products;
+    }
 }

@@ -17,6 +17,7 @@ package org.openinfinity.domain.service;
 
 import java.util.Collection;
 
+import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
 
 /**
@@ -25,15 +26,9 @@ import org.openinfinity.domain.entity.Product;
  * @author Ilkka Leinonen
  */
 public interface CatalogueService {
-	
-	Collection<Product> queryByName(String name);
-	
-	Product queryById(String id);
-	
-	Product addProductToCatalogue(Product product);
-	
-	Product updateProductToCatalogue(Product product);
-	
-	void deleteProductFromCatalogue(Product product);
-	
+
+    public void addProductToCatalogue(Product product, Catalogue catalogue);
+    public void removeProductFromCatalogue(Product product, Catalogue catalogue);
+
+
 }

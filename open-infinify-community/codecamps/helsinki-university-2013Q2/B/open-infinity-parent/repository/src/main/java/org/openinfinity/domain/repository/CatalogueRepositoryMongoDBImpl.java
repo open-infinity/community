@@ -17,9 +17,9 @@
 
 import org.openinfinity.core.annotation.AuditTrail;
 import org.openinfinity.core.annotation.Log;
+import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.GenericTypeResolver;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -33,39 +33,10 @@ import java.util.Collection;
  * @author Ilkka Leinonen
  */
 @Repository
-public class CRUDRepositoryMongoDBImpl<T extends RepositoryItem> implements CRUDRepository<T> {
+public class CatalogueRepositoryMongoDBImpl extends CRUDRepositoryMongoDBImpl<Catalogue> implements CatalogueRepository {
 
 	@Autowired
 	MongoTemplate mongoTemplate;
 
-    @Override
-    public String create(RepositoryItem item) {
-        mongoTemplate.insert(item);
-        return item.getId();
-    }
-
-    @Override
-    public void update(RepositoryItem item) {
-        mongoTemplate.save(item);
-    }
-
-    @Override
-    public Collection loadAll() {
-        return mongoTemplate.findAll(getGenericClassType());
-    }
-
-    @Override
-    public T loadById(String id) {
-        return mongoTemplate.findById(id, getGenericClassType());
-    }
-
-    @Override
-    public void delete(RepositoryItem item) {
-        mongoTemplate.remove(item);
-    }
-
-    private Class<T> getGenericClassType(){
-        return (Class<T>) GenericTypeResolver.resolveTypeArgument(getClass(), CRUDRepositoryMongoDBImpl.class);
-    }
 
 }
