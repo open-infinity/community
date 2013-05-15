@@ -30,6 +30,7 @@ import org.openinfinity.domain.repository.RepositoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 
@@ -55,29 +56,35 @@ public class CRUDServiceImpl<T extends RepositoryItem, T_REPO extends CRUDReposi
 
 
     @Override
+    @Transactional
     public String create(T item) {
         crudRepository.create(item);
         return item.getId();
     }
 
     @Override
+    @Transactional
     public void update(T item) {
         if(item.getId()==null || crudRepository.loadById(item.getId())==null){ //if product does not yet exist in repository
             ExceptionUtil.throwApplicationException("Trying to update item that does not exist in repository");
         }
+        else crudRepository.update(item);
     }
 
     @Override
+    @Transactional
     public Collection<T> loadAll() {
         return crudRepository.loadAll();
     }
 
     @Override
+    @Transactional
     public T loadById(String id) {
         return crudRepository.loadById(id);
     }
 
     @Override
+    @Transactional
     public void delete(T item) {
         crudRepository.delete(item);
     }

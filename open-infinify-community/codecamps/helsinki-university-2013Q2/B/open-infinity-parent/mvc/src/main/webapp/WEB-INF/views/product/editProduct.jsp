@@ -40,7 +40,7 @@
 						<tr>
                             <td><form:label for="catalogue" path="catalogue" cssErrorClass="catalogue">Catalogue</form:label></td>
                             <td>
-                                <form:select path="catalogue">
+                                <form:select path="catalogueId">
                                     <form:options items="${catalogs}" itemValue="id" itemLabel="id"/>
                                 </form:select>
                             </td>

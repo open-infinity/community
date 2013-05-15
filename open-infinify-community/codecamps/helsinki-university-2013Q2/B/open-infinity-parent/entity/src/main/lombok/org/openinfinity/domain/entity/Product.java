@@ -60,7 +60,7 @@ public class Product implements RepositoryItem{
 	@NumberFormat @DecimalMin("0.00") @NotNull @NonNull
 	private BigDecimal price;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    //@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Catalogue catalogue;
 
 
@@ -114,5 +114,13 @@ public class Product implements RepositoryItem{
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Catalogue getCatalogue() {
+        return catalogue;
+    }
+
+    public void setCatalogue(Catalogue catalogue) {
+        this.catalogue = catalogue;
     }
 }

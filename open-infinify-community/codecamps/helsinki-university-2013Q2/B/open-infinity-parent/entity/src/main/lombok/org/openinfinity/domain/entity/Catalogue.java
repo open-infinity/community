@@ -21,6 +21,9 @@ import java.util.Collections;
 
 import lombok.Data;
 
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.openinfinity.core.annotation.NotScript;
 import org.openinfinity.domain.repository.CRUDRepository;
 import org.openinfinity.domain.repository.RepositoryItem;
@@ -29,6 +32,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 /**
  * Catalogue entity.
@@ -37,12 +41,17 @@ import javax.persistence.OneToMany;
  */
 @Document
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Catalogue implements RepositoryItem {
 	
 	@Id @NotScript
 	private String id;
 
-    @OneToMany(mappedBy = "catalogue", cascade = {CascadeType.ALL})
+    @NotScript @NotNull @NonNull
+    private String name;
+
+    //@OneToMany(mappedBy = "catalogue", cascade = {CascadeType.ALL})
 	private Collection<Product> products = Collections.checkedCollection(new ArrayList<Product>(), Product.class);
 
     public void addProduct(Product product) {
@@ -52,9 +61,6 @@ public class Catalogue implements RepositoryItem {
     public void removeProduct(Product product) {
         this.products.remove(product);
     }
-
-
-
 
 
     public String getId() {
@@ -71,5 +77,13 @@ public class Catalogue implements RepositoryItem {
 
     public void setProducts(Collection<Product> products) {
         this.products = products;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

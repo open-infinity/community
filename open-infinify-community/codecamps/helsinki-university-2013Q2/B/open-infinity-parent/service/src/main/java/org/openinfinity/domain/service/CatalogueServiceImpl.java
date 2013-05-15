@@ -20,6 +20,7 @@ import org.openinfinity.domain.entity.Product;
 import org.openinfinity.domain.repository.CatalogueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -45,18 +46,21 @@ public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue, CatalogueRe
     }
 
     @Override
+    @Transactional
     public void addProductToCatalogue(Product product, Catalogue catalogue) {
         catalogue.addProduct(product);
         catalogueRepository.update(catalogue);
     }
 
     @Override
+    @Transactional
     public void removeProductFromCatalogue(Product product, Catalogue catalogue) {
         catalogue.removeProduct(product);
         catalogueRepository.update(catalogue);
     }
 
     @Override
+    @Transactional
     public Collection<Product> listAllProductsInCatalogue(Catalogue catalogue) {
         return(catalogue.getProducts());
 

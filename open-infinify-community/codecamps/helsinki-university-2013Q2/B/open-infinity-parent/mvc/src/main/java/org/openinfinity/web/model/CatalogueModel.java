@@ -15,30 +15,24 @@
  */
 package org.openinfinity.web.model;
 
+import org.openinfinity.domain.entity.Catalogue;
+import org.openinfinity.domain.entity.Product;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.openinfinity.domain.entity.Product;
-import org.openinfinity.domain.service.CatalogueService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Product model for exposing product domain to view. 
  * 
  * @author Ilkka Leinonen
  */
-public class ProductModel extends Product {
+public class CatalogueModel extends Catalogue {
 
-	private Product product;
-
-    private String catalogueId;
+	private Catalogue catalogue;
 
 	private Map<String, Collection<String>> errorStatuses = new HashMap<String, Collection<String>>();
-
-    @Autowired
-    private CatalogueService catalogueService;
-
+	
 	public void addErrorStatuses(String level, Collection<String> ids) {
 		errorStatuses.put(level, ids);
 	}
@@ -53,22 +47,15 @@ public class ProductModel extends Product {
 
 	@Override
 	public String toString() {
-		return "ProductModel [product=" + product + ", errorStatuses="
+		return "CatalogueModel [catalogue=" + catalogue + ", errorStatuses="
 				+ errorStatuses + ", toString()=" + super.toString() + "]";
 	}
-	
-	public Product getProduct() {
-		Product product = new Product();
-		product.setCompany(super.getCompany());
-		product.setDescription(super.getDescription());
-		product.setId(super.getId());
-		product.setName(super.getName());
-		product.setPrice(super.getPrice());
-        //product.setCatalogue(catalogueService.loadById(catalogueId));
-		return product;
+
+	public Catalogue getCatalogue() {
+		Catalogue catalogue = new Catalogue();
+		catalogue.setId(super.getId());
+        catalogue.setName(super.getName());
+		return catalogue;
 	}
 
-    public String getCatalogueId() {
-        return catalogueId;
-    }
 }
