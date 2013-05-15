@@ -15,16 +15,17 @@
  * limitations under the License.
  */package org.openinfinity.domain.repository;
 
-import java.util.Collection;
-
 import org.openinfinity.core.annotation.AuditTrail;
 import org.openinfinity.core.annotation.Log;
 import org.openinfinity.domain.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.GenericTypeResolver;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 /**
  * Product repository implementation.
@@ -32,17 +33,38 @@ import org.springframework.stereotype.Repository;
  * @author Ilkka Leinonen
  */
 @Repository
-public class ProductRepositoryMongoDBImpl extends CRUDRepositoryMongoDBImpl<Product> implements ProductRepository {
+public class CRUDRepositoryMongoDBImpl<T extends RepositoryItem> implements CRUDRepository<T> {
 
 	@Autowired
 	MongoTemplate mongoTemplate;
 
-	@Log
-	@AuditTrail
-	public Collection<Product> loadByName(String name) {
-		Query query = new Query(Criteria.where("name").is(name));
-		return mongoTemplate.find(query, Product.class);
-	}
-	
+    @Override
+    public String create(RepositoryItem item) {
+        mongoTemplate.insert(item);
+        return item.getId();
+    }
 
+    @Override
+    public void update(RepositoryItem item) {
+        mongoTemplate.save(item);
+    }
+
+    @Override
+    public Collection loadAll() {
+        return mongoTemplate.findAll(getGenericClassType());
+    }
+
+    @Override
+    public T loadById(String id) {
+        return mongoTemplate.findById(id, getGenericClassType());
+    }
+
+    @Override
+    public void delete(RepositoryItem item) {
+        mongoTemplate.remove(item);
+    }
+
+    private Class<T> getGenericClassType(){
+        return (Class<T>) GenericTypeResolver.resolveTypeArgument(getClass(), CRUDRepositoryMongoDBImpl.class);
+    }
 }

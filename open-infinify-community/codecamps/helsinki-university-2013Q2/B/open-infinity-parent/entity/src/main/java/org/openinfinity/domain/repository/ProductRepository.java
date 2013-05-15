@@ -24,18 +24,8 @@ import org.openinfinity.domain.entity.Product;
  * 
  * @author Ilkka Leinonen
  */
-public interface ProductRepository {
+public interface ProductRepository extends CRUDRepository<Product>{
 
-	public String create(Product product);
-	
-	public void update(Product product);
-	
-	public Collection<Product> loadAll();
-	
-	public Product loadById(String id);
-	
 	public Collection<Product> loadByName(String name);
-	
-	public void delete (Product product);
-	
+
 }
