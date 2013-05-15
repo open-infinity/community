@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <scp keyfile="/cs/fs/home/kkkorpin/TOAS/GIT14B/key65a.key" trust="true" localFile="/cs/fs/home/kkkorpin/TOAS/GIT14C/community/open-infinify-community/codecamps/helsinki-university-2013Q2/B/open-infinity-parent/mvc/target/shoppinglist.war" remoteTodir="ec2-user@ec2-176-34-166-245.eu-west-1.compute.amazonaws.com:/opt/openinfinity/2.0.0/tomcat/webapps"/>
-</target>
-</project>

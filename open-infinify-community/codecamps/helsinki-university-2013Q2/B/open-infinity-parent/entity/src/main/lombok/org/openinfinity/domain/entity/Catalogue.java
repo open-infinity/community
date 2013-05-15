@@ -27,6 +27,9 @@ import org.openinfinity.domain.repository.RepositoryItem;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+
 /**
  * Catalogue entity.
  * 
@@ -38,12 +41,21 @@ public class Catalogue implements RepositoryItem {
 	
 	@Id @NotScript
 	private String id;
-	
+
+    @OneToMany(mappedBy = "catalogue", cascade = {CascadeType.ALL})
 	private Collection<Product> products = Collections.checkedCollection(new ArrayList<Product>(), Product.class);
-	
-	public void addProduct(Product product) {
-		this.products.add(product);
-	}
+
+    public void addProduct(Product product) {
+        this.products.add(product);
+    }
+
+    public void removeProduct(Product product) {
+        this.products.remove(product);
+    }
+
+
+
+
 
     public String getId() {
         return id;

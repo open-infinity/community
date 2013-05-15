@@ -19,6 +19,7 @@ import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
 import org.openinfinity.domain.repository.CRUDRepository;
 import org.openinfinity.domain.repository.CatalogueRepository;
+import org.openinfinity.domain.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue, CatalogueRepository> implements CatalogueService{
+
+    @Autowired
+    private CatalogueRepository catalogueRepository;
+
 
     public CatalogueServiceImpl(){
 
@@ -41,11 +46,13 @@ public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue, CatalogueRe
 
     @Override
     public void addProductToCatalogue(Product product, Catalogue catalogue) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        catalogue.addProduct(product);
+        catalogueRepository.update(catalogue);
     }
 
     @Override
     public void removeProductFromCatalogue(Product product, Catalogue catalogue) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        catalogue.removeProduct(product);
+        catalogueRepository.update(catalogue);
     }
 }
