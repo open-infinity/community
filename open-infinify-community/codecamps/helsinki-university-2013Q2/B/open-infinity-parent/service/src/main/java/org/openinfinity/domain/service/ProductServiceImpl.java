@@ -15,8 +15,6 @@
  */
 package org.openinfinity.domain.service;
 
-import java.util.Collection;
-
 import org.openinfinity.core.annotation.AuditTrail;
 import org.openinfinity.core.annotation.Log;
 import org.openinfinity.core.exception.ExceptionLevel;
@@ -26,8 +24,9 @@ import org.openinfinity.domain.repository.CRUDRepository;
 import org.openinfinity.domain.repository.ProductRepository;
 import org.openinfinity.domain.repository.RepositoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.GenericTypeResolver;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 /**
  * Product service implementation with specification.
@@ -35,42 +34,27 @@ import org.springframework.stereotype.Service;
  * @author Ilkka Leinonen
  */
 @Service
-public class CRUDServiceImpl<T extends RepositoryItem> implements CRUDService<T> {
+public class ProductServiceImpl extends CRUDServiceImpl<Product> implements ProductService{
 
 	@Autowired
 	private ProductSpecification productSpecification;
-	
-	@Autowired
-	private CRUDRepository<T> crudRepository;
 
-
-    @Override
-    public String create(T item) {
-        crudRepository.create(item);
-        return item.getId();
-    }
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
-    public void update(T item) {
-        if(item.getId()==null || crudRepository.loadById(item.getId())==null){ //if product does not yet exist in repository
-            ExceptionUtil.throwApplicationException("Trying to update item that does not exist in repository");
+    @Log
+    @AuditTrail
+    public String create(Product product) {
+        Collection<Product> products = productRepository.loadByName(product.getName());
+        if (productSpecification.isNotEligibleForCreation(product, products)) {
+            ExceptionUtil.throwBusinessViolationException(
+                    "Product already exists: " + product.getName(),
+                    ExceptionLevel.INFORMATIVE,
+                    ProductService.UNIQUE_EXCEPTION_PRODUCT_ALREADY_EXISTS);
         }
+        productRepository.create(product);
+        return product.getId();
     }
-
-    @Override
-    public Collection<T> loadAll() {
-        return crudRepository.loadAll();
-    }
-
-    @Override
-    public T loadById(String id) {
-        return crudRepository.loadById(id);
-    }
-
-    @Override
-    public void delete(T item) {
-        crudRepository.delete(item);
-    }
-
 
 }

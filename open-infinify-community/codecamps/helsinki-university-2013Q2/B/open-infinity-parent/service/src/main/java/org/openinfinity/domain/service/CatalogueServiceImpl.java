@@ -15,19 +15,17 @@
  */
 package org.openinfinity.domain.service;
 
-import java.util.Collection;
-
 import org.openinfinity.core.annotation.AuditTrail;
 import org.openinfinity.core.annotation.Log;
 import org.openinfinity.core.exception.ExceptionLevel;
 import org.openinfinity.core.util.ExceptionUtil;
+import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
-import org.openinfinity.domain.repository.CRUDRepository;
 import org.openinfinity.domain.repository.ProductRepository;
-import org.openinfinity.domain.repository.RepositoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.GenericTypeResolver;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 /**
  * Product service implementation with specification.
@@ -35,42 +33,16 @@ import org.springframework.stereotype.Service;
  * @author Ilkka Leinonen
  */
 @Service
-public class CRUDServiceImpl<T extends RepositoryItem> implements CRUDService<T> {
-
-	@Autowired
-	private ProductSpecification productSpecification;
-	
-	@Autowired
-	private CRUDRepository<T> crudRepository;
+public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue> implements CatalogueService{
 
 
     @Override
-    public String create(T item) {
-        crudRepository.create(item);
-        return item.getId();
+    public void addProductToCatalogue(Product product, Catalogue catalogue) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void update(T item) {
-        if(item.getId()==null || crudRepository.loadById(item.getId())==null){ //if product does not yet exist in repository
-            ExceptionUtil.throwApplicationException("Trying to update item that does not exist in repository");
-        }
+    public void removeProductFromCatalogue(Product product, Catalogue catalogue) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
-
-    @Override
-    public Collection<T> loadAll() {
-        return crudRepository.loadAll();
-    }
-
-    @Override
-    public T loadById(String id) {
-        return crudRepository.loadById(id);
-    }
-
-    @Override
-    public void delete(T item) {
-        crudRepository.delete(item);
-    }
-
-
 }
