@@ -9,7 +9,7 @@
             
             <tr>
             	<form:form method="DELETE" action ="catalogue/delete/${o.id}">
-                <td>${o.id}</td><td><input type="submit" value="Delete"></input></td>
+                <td><a href="view/${o.id}">${o.id}</a><input type="submit" value="Delete"></td>
             	</form:form>
             </tr>
         </c:forEach>
