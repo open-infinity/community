@@ -58,9 +58,6 @@ public class CatalogueController {
     public String ManageCatalogues(Model model){
 
 
-        Catalogue c = new Catalogue();
-        catalogueService.create(c);
-
 
         List<Catalogue> catalogs = new ArrayList<Catalogue>(catalogueService.loadAll());
 
@@ -83,10 +80,21 @@ public class CatalogueController {
     @RequestMapping(value = "catalogue/view/{id}")
     public String view(@PathVariable("id") String itemId, Model model){
 
-         model.addAttribute("produtclist",catalogueService.listAllProductsInCatalogue(catalogueService.loadById(itemId)));
-
+         model.addAttribute("produtclist", catalogueService.listAllProductsInCatalogue(catalogueService.loadById(itemId)));
+         model.addAttribute("catalogname",itemId);
 
         return "catalogue/view";
+    }
+
+    @RequestMapping(value = "catalogue/create/{id}")
+    public String create(@PathVariable("id") String itemId, Model model){
+
+
+        Catalogue c = new Catalogue();
+        c.setId(itemId);
+        catalogueService.create(c);
+
+        return "catalogue/create";
     }
 
 }
