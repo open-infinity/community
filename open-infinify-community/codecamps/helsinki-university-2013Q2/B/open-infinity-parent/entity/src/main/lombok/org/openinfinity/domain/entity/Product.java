@@ -17,6 +17,8 @@ package org.openinfinity.domain.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -57,7 +59,11 @@ public class Product implements RepositoryItem{
 	
 	@NumberFormat @DecimalMin("0.00") @NotNull @NonNull
 	private BigDecimal price;
-	
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Catalogue catalogue;
+
+
 //	private Product(String name, String company, String description, BigDecimal price) {
 //		this.name = name;
 //		this.company = company;
