@@ -1,18 +1,27 @@
-							<br />		
-							<div class="bottom-container">
-								 <a href="?locale=en_us">us</a> |  <a href="?locale=fi_fi">fi</a> | <a href="?locale=en_gb">gb</a> | <a href="?locale=es_es">es</a> | <a href="?locale=de_de">de</a>	
-							</div>
-					</div>			
-				</div>
-		</div>
-		<br />
-		<div>
-				<img src="<spring:url value="/resources/images/open-infinity-logo.png" />" />
-		</div>
+      <div class="footer">
 
-		</div> 
-		<br />
-		<br /> 
-		</div>
-	</body>
+        				<img src="<spring:url value="/resources/images/open-infinity-logo.png" />" />
+
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
 </html>

@@ -13,7 +13,7 @@
         <div id="statusbox"></div>
         <br/>
         <div id="catalogueForm" class="span-12 last">
-            <form:form modelAttribute="catalogueModel" action="catalogue" method="post">
+            <form:form commandName="catalogueModel" action="catalogue" method="post">
                 <table id="catalogueTable">
                     <tr>
                         <td><form:label	for="name" path="name" cssErrorClass="error">Name</form:label></td>
@@ -45,8 +45,7 @@
     </c:forEach>
 </table>
 
-
-<c:set var="model" value="catalogueModel" />
+<c:set var="model" value="catalogModel" />
 
 
 <%@ include file="/WEB-INF/views/common/validation_scripts.jsp" %>

@@ -140,18 +140,39 @@ public class CatalogueController {
     }
 
 
-
+   /*
     @Log
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
     @RequestMapping(value = "catalogue", method = RequestMethod.POST)
-    public @ResponseBody Map<String, ? extends Object> create(@Valid @RequestBody CatalogueModel catalogueModel, HttpServletResponse response) {
+    public @ResponseBody Map<String, ? extends Object> create(@Valid @ModelAttribute CatalogueModel catalogueModel, HttpServletResponse response) {
        // Set<ConstraintViolation<Catalogue>> failures = validator.validate(catalogueModel.getCatalogue());
        // if (failures.isEmpty()) {
+
+
             String id = catalogueService.create(catalogueModel.getCatalogue());
+
             return new ModelMap("id", id);
         //} else {
          //   response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
          //   return getValidationMessages(failures);
+        //}
+    }
+     */
+
+    @Log
+    @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
+    @RequestMapping(value = "catalogue", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute CatalogueModel catalogueModel, HttpServletResponse response) {
+        // Set<ConstraintViolation<Catalogue>> failures = validator.validate(catalogueModel.getCatalogue());
+        // if (failures.isEmpty()) {
+
+
+        String id = catalogueService.create(catalogueModel.getCatalogue());
+
+        return "redirect:/manager/catalogue";
+        //} else {
+        //   response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        //   return getValidationMessages(failures);
         //}
     }
 
