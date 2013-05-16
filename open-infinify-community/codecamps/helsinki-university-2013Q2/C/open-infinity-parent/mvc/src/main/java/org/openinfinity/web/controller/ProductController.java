@@ -40,6 +40,7 @@ import org.openinfinity.web.model.ProductModel;
 import org.openinfinity.web.support.SerializerUtil;
 import org.openinfinity.web.support.ServletUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,85 +52,77 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 
+ *
  * Product controller for m-v-c binding and service orchestration.
- * 
+ *
  * @author Ilkka Leinonen
  */
 @Controller
 @RequestMapping(value = "/productModel")
 public class ProductController {
 
-	@Autowired
-	private ProductService productService;
-	
-	@Autowired
-	private Validator validator;
-	
-	@Autowired 
-	ApplicationContext applicationContext;
-	
-	//@ResponseStatus annotation is not working, bug in Spring?
-	//@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason="Domain service threw an exception.")
-	@Log
-	@ExceptionHandler({SystemException.class, ApplicationException.class, BusinessViolationException.class})
-	//public @ResponseBody Map<String, ? extends Object> exceptionOccurred(AbstractCoreException abstractCoreException, HttpServletResponse response) {
-	public void exceptionOccurred(AbstractCoreException abstractCoreException, HttpServletResponse response, Locale locale) {
-		ProductModel productModel = new ProductModel();
-		if (abstractCoreException.isErrorLevelExceptionMessagesIncluded()) {
-			Collection<String> localizedErrorMessages = getLocalizedExceptionMessages(abstractCoreException.getErrorLevelExceptionIds(), locale);
-			productModel.addErrorStatuses("errorLevelExceptions", localizedErrorMessages);
-		}
-		if (abstractCoreException.isWarningLevelExceptionMessagesIncluded())  {
-			Collection<String> localizedErrorMessages = getLocalizedExceptionMessages(abstractCoreException.getWarningLevelExceptionIds(), locale);
-			productModel.addErrorStatuses("warningLevelExceptions", localizedErrorMessages);
-		}
-		if (abstractCoreException.isInformativeLevelExceptionMessagesIncluded()) {
-			Collection<String> localizedErrorMessages = getLocalizedExceptionMessages(abstractCoreException.getInformativeLevelExceptionIds(), locale);
-			productModel.addErrorStatuses("informativeLevelExceptions", localizedErrorMessages);
-		}
-		//return productModel.getErrorStatuses();
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		SerializerUtil.jsonSerialize(ServletUtil.getWriter(response), productModel.getErrorStatuses());
-	}
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private Validator validator;
+    @Autowired
+    ApplicationContext applicationContext;
 
-	private Collection<String> getLocalizedExceptionMessages(Collection<String> localizedExceptionIds, Locale locale) {
-		Collection<String> localizedErrorMessages = new ArrayList<String>();
-		for (String uniqueId : localizedExceptionIds) {
-			String message = applicationContext.getMessage(uniqueId, null, locale);
-			localizedErrorMessages.add(message);	
-		}
-		return localizedErrorMessages;
-	}
-	
-	@Log
-	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
-	@RequestMapping(method = RequestMethod.GET)
-	public String createNewProduct(Model model) {
-		model.addAttribute(new ProductModel());
-		return "product/editProduct";
-	}
-	
-	@Log
-	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL) 
-	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Map<String, ? extends Object> create(@Valid @RequestBody ProductModel productModel, HttpServletResponse response) {
-		Set<ConstraintViolation<Product>> failures = validator.validate(productModel.getProduct());
-		if (failures.isEmpty()) {
-			String id = productService.create(productModel.getProduct());
-			return new ModelMap("id", id);
-		} else {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			return getValidationMessages(failures);
-		}
-	}
-	
-	private Map<String, String> getValidationMessages(Set<ConstraintViolation<Product>> failures) {
-		Map<String, String> failureMessages = new HashMap<String, String>();
-		for (ConstraintViolation<Product> failure : failures) {
-			failureMessages.put(failure.getPropertyPath().toString(), failure.getMessage());
-		}
-		return failureMessages;
-	}
-	
+    //@ResponseStatus annotation is not working, bug in Spring?
+    //@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason="Domain service threw an exception.")
+    @Log
+    @ExceptionHandler({SystemException.class, ApplicationException.class, BusinessViolationException.class})
+    //public @ResponseBody Map<String, ? extends Object> exceptionOccurred(AbstractCoreException abstractCoreException, HttpServletResponse response) {
+    public void exceptionOccurred(AbstractCoreException abstractCoreException, HttpServletResponse response, Locale locale) {
+        ProductModel productModel = new ProductModel();
+        if (abstractCoreException.isErrorLevelExceptionMessagesIncluded()) {
+            Collection<String> localizedErrorMessages = getLocalizedExceptionMessages(abstractCoreException.getErrorLevelExceptionIds(), locale);
+            productModel.addErrorStatuses("errorLevelExceptions", localizedErrorMessages);
+        }
+        if (abstractCoreException.isWarningLevelExceptionMessagesIncluded()) {
+            Collection<String> localizedErrorMessages = getLocalizedExceptionMessages(abstractCoreException.getWarningLevelExceptionIds(), locale);
+            productModel.addErrorStatuses("warningLevelExceptions", localizedErrorMessages);
+        }
+        if (abstractCoreException.isInformativeLevelExceptionMessagesIncluded()) {
+            Collection<String> localizedErrorMessages = getLocalizedExceptionMessages(abstractCoreException.getInformativeLevelExceptionIds(), locale);
+            productModel.addErrorStatuses("informativeLevelExceptions", localizedErrorMessages);
+        }
+        //return productModel.getErrorStatuses();
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        SerializerUtil.jsonSerialize(ServletUtil.getWriter(response), productModel.getErrorStatuses());
+    }
+
+    private Collection<String> getLocalizedExceptionMessages(Collection<String> localizedExceptionIds, Locale locale) {
+        Collection<String> localizedErrorMessages = new ArrayList<String>();
+        for (String uniqueId : localizedExceptionIds) {
+            String message = applicationContext.getMessage(uniqueId, null, locale);
+            localizedErrorMessages.add(message);
+        }
+        return localizedErrorMessages;
+    }
+
+    @Log
+    @AuditTrail(argumentStrategy = ArgumentStrategy.ALL)
+    @RequestMapping(method = RequestMethod.GET)
+    public String createNewProduct(Model model) {
+        model.addAttribute(new ProductModel());
+        return "product/editProduct";
+    }
+
+    @Log
+    @AuditTrail(argumentStrategy = ArgumentStrategy.ALL)
+    @RequestMapping(method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String, ? extends Object> create(@RequestBody ProductModel productModel, HttpServletResponse response) {
+        //Set<ConstraintViolation<Product>> failures = validator.validate(productModel.getProduct());
+        String id = productService.create(productModel.getProduct()).getId().toString();
+        return new ModelMap("id", id);
+}
+//    private Map<String, String> getValidationMessages(Set<ConstraintViolation<Product>> failures) {
+//        Map<String, String> failureMessages = new HashMap<String, String>();
+//        for (ConstraintViolation<Product> failure : failures) {
+//            failureMessages.put(failure.getPropertyPath().toString(), failure.getMessage());
+//        }
+//        return failureMessages;
+//    }
 }

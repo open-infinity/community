@@ -15,27 +15,18 @@
  */
 package org.openinfinity.domain.repository;
 
-import java.util.Collection;
-
+import java.math.BigInteger;
+import java.util.List;
 import org.openinfinity.domain.entity.Product;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * Product repository interface.
- * 
+ *
  * @author Ilkka Leinonen
  */
-public interface ProductRepository {
+public interface ProductRepository extends MongoRepository<Product, BigInteger> {
 
-	public String create(Product product);
-	
-	public void update(Product product);
-	
-	public Collection<Product> loadAll();
-	
-	public Product loadById(String id);
-	
-	public Collection<Product> loadByName(String name);
-	
-	public void delete (Product product);
-	
+    List<Product> findByName(String name);
+
 }

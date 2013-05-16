@@ -16,6 +16,7 @@
 package org.openinfinity.domain.entity;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -40,9 +41,8 @@ import org.springframework.format.annotation.NumberFormat;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class Product {
-
-	@Id @NotScript
-	private String id;
+        @Id
+	private BigInteger id;
 
 	@NotScript @NotNull @NonNull
 	private String name;
@@ -55,6 +55,9 @@ public class Product {
 	
 	@NumberFormat @DecimalMin("0.00") @NotNull @NonNull
 	private BigDecimal price;
+        
+        @NotScript @NonNull
+	private String gtinCode;
 	
 //	private Product(String name, String company, String description, BigDecimal price) {
 //		this.name = name;

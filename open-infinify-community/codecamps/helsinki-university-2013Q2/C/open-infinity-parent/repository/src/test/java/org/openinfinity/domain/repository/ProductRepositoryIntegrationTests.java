@@ -19,6 +19,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import org.bson.types.ObjectId;
 
 import org.junit.After;
 import org.junit.Before;
@@ -33,50 +35,50 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Product Repository integration tests.
- * 
- * @Author Ilkka Leinonen 
- * 
+ *
+ * @Author Ilkka Leinonen
+ *
  */
-@ContextConfiguration(locations={"classpath*:**/test-repository-context.xml"})
+@ContextConfiguration(locations = {"classpath*:**/test-repository-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ProductRepositoryIntegrationTests {
 
-	@Autowired
-	ProductRepository helloRepository;
-	
-	@Autowired
-	ProductSpecification productionSpecification;
-	
-	@Before
-	public void setUp() throws Exception {}
+    @Autowired
+    ProductRepository productRepository;
+    @Autowired
+    ProductSpecification productionSpecification;
 
-	@After
-	public void tearDown() throws Exception {}
+    @Before
+    public void setUp() throws Exception {
+    }
 
-	@Test @Ignore
-	public void givenKnownProductWhenStoringToBackendRepositoryThenProductMustBeFound() {
-		Product expected = createProduct();
-		String id = helloRepository.create(expected);
-		Product actual = helloRepository.loadById(id);
-		assertEquals(expected.getName(), actual.getName());
-		assertEquals(expected.getCompany(), actual.getCompany());
-		assertEquals(expected.getDescription(), actual.getDescription());
-		assertEquals(expected.getPrice(), actual.getPrice());
-		assertNotNull(actual.getId());		
-	}
+    @After
+    public void tearDown() throws Exception {
+    }
 
-	private Product createProduct() {
-		Product expected = new Product();
-		expected.setCompany("TestComponany");
-		expected.setDescription("Test Description");
-		expected.setName("Test Name");
-		expected.setPrice(new BigDecimal("12.3"));
-		return expected;
-	}
-	
+    @Test
+    @Ignore
+    public void givenKnownProductWhenStoringToBackendRepositoryThenProductMustBeFound() {
+        Product expected = createProduct();
+        BigInteger id = productRepository.save(expected).getId();
+        Product actual = productRepository.findOne(id);
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getCompany(), actual.getCompany());
+        assertEquals(expected.getDescription(), actual.getDescription());
+        assertEquals(expected.getPrice(), actual.getPrice());
+        assertNotNull(actual.getId());
+    }
+
+    private Product createProduct() {
+        Product expected = new Product();
+        expected.setCompany("TestComponany");
+        expected.setDescription("Test Description");
+        expected.setName("Test Name");
+        expected.setPrice(new BigDecimal("12.3"));
+        return expected;
+    }
 //	@Test @Ignore
 //	public void testFail() {
 //		fail("Not yet implemented");
 //	}	
-
 }

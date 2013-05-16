@@ -18,6 +18,7 @@ package org.openinfinity.domain.entity;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import lombok.Data;
 
@@ -36,11 +37,23 @@ public class ShoppingList {
 	
 	@Id @NotScript
 	private String id;
+        
+        private User manager;
+        private List<User> buyers = new ArrayList<User>();
 	
 	private Collection<Product> products = Collections.checkedCollection(new ArrayList<Product>(), Product.class);
 
 	public void addProduct(Product product) {
 		this.products.add(product);
 	}
+        
+        public boolean isProductCorrect(Product product) {
+            for(Product p : products) {
+                if(p.getGtinCode().equals(product.getGtinCode())) {
+                    return true;
+                }
+            }
+            return false;
+        }
 	
 }

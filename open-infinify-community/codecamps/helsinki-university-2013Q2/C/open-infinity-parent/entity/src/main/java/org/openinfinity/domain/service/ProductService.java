@@ -15,28 +15,28 @@
  */
 package org.openinfinity.domain.service;
 
+import java.math.BigInteger;
 import java.util.Collection;
 
 import org.openinfinity.domain.entity.Product;
 
-
 /**
  * Product service interface.
- * 
+ *
  * @author Ilkka Leinonen
  */
 public interface ProductService {
-	
-	public static final String UNIQUE_EXCEPTION_PRODUCT_ALREADY_EXISTS = "localized.exception.product.already.exists"; 
-	
-	public String create(Product product);
-	
-	public void update(Product product);
-	
-	public Collection<Product> loadAll();
-	
-	public Product loadById(String id);
-	
-	public void delete (Product product);
 
+    public static final String UNIQUE_EXCEPTION_PRODUCT_ALREADY_EXISTS = "localized.exception.product.already.exists";
+    public static final String PRODUCT_NOT_FOUND = "localized.exception.product.not.found";
+
+    public Product create(Product product);
+
+    public void update(Product product);
+
+    public Collection<Product> loadAll();
+
+    public Product loadById(BigInteger id);
+
+    public void delete(Product product);
 }

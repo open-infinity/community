@@ -18,6 +18,7 @@ package org.openinfinity.domain.service;
 import static org.junit.Assert.assertFalse;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -45,15 +46,15 @@ public class ProductCatalogueUnitTest {
 	
 	private void populateProducts() {
 		for (int index = 0 ; index < 10 ; index++) {
-			Product product = new Product("Test Name " + index, "Test Description " + index, "Company " + index, new BigDecimal("1.23"));
-			product.setId("" + System.currentTimeMillis());
+			Product product = new Product("Test Name " + index, "Test Description " + index, "Company " + index, new BigDecimal("1.23"), "7676576");
+			product.setId(new BigInteger(""+System.currentTimeMillis()));
 			products.add(product);
 		}
 	}
 	
 	@Test
 	public void givenKnownProductWhenCreatingNewProductThenBusinessRuleMustAcknowledgeDublicateItems() {
-		Product product = new Product("Test Name ", "Test Description ", "Company ", new BigDecimal("1.23"));
+		Product product = new Product("Test Name ", "Test Description ", "Company ", new BigDecimal("1.23"), "7676576");
 		boolean expectedFalse = productSpecification.isNotEligibleForCreation(product, products);
 		assertFalse(expectedFalse);
 	}
