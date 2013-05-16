@@ -30,7 +30,7 @@ import java.util.Collection;
 /**
  * Product repository implementation.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Repository
 public class CRUDRepositoryMongoDBImpl<T extends RepositoryItem> implements CRUDRepository<T> {

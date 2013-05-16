@@ -57,6 +57,7 @@ import org.springframework.web.bind.annotation.*;
  * Product controller for m-v-c binding and service orchestration.
  * 
  * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Controller
 @RequestMapping(value = "/manager/product")

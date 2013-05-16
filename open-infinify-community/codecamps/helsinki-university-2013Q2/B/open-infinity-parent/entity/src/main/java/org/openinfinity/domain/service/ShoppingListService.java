@@ -23,9 +23,7 @@ import org.openinfinity.domain.entity.Product;
 import org.openinfinity.domain.entity.ShoppingList;
 
 /**
- * Business service for shoppinglist.
- * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 public interface ShoppingListService extends CRUDService<ShoppingList> {
 

@@ -22,7 +22,7 @@ import org.openinfinity.domain.entity.Product;
 /**
  * Product repository interface.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 public interface ProductRepository extends CRUDRepository<Product>{
 

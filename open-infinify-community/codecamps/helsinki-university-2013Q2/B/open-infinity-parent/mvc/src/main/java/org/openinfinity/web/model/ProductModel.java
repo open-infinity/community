@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Product model for exposing product domain to view. 
  * 
  * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 public class ProductModel extends ProductWrapper {
 

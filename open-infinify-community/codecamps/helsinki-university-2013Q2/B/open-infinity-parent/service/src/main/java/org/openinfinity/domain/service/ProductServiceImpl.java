@@ -31,7 +31,7 @@ import java.util.Collection;
 /**
  * Product service implementation with specification.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Service
 public class ProductServiceImpl extends CRUDServiceImpl<Product, ProductRepository> implements ProductService{

@@ -21,9 +21,7 @@ import org.openinfinity.domain.entity.Product;
 
 
 /**
- * Product service interface.
- * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 public interface ProductService extends CRUDService<Product> {
 	

@@ -10,11 +10,7 @@ import org.openinfinity.domain.repository.RepositoryItem;
 import java.util.Collection;
 
 /**
- * Created with IntelliJ IDEA.
- * User: joosakur
- * Date: 15.5.2013
- * Time: 10:48
- * To change this template use File | Settings | File Templates.
+ * @author Joosa Kurvinen
  */
 public interface CRUDService<T extends RepositoryItem> {
 

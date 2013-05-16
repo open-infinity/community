@@ -32,7 +32,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Shopping list entity.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Document
 @Data

@@ -31,7 +31,7 @@ import java.math.BigDecimal;
 /**
  * Product entity.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Document
 @Data

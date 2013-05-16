@@ -40,6 +40,7 @@ import org.springframework.format.annotation.NumberFormat;
  * Product entity.
  * 
  * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Document
 @Data

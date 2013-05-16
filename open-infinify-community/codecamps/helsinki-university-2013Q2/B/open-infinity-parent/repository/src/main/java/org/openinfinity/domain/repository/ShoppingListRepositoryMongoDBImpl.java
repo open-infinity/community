@@ -22,7 +22,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Product repository implementation.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Repository
 public class ShoppingListRepositoryMongoDBImpl extends CRUDRepositoryMongoDBImpl<ShoppingList> implements ShoppingListRepository {

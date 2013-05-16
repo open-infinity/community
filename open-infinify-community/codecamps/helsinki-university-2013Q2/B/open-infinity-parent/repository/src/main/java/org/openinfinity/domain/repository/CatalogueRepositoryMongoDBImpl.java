@@ -30,7 +30,7 @@ import java.util.Collection;
 /**
  * Product repository implementation.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Repository
 public class CatalogueRepositoryMongoDBImpl extends CRUDRepositoryMongoDBImpl<Catalogue> implements CatalogueRepository {

@@ -27,7 +27,9 @@ import javax.validation.Valid;
 import javax.validation.Validator;
 import java.util.*;
 
-
+/**
+ * @author Joosa Kurvinen
+ */
 @Controller
 @RequestMapping(value = "/manager/shoppinglist")
 public class ShoppingListController {

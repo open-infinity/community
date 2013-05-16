@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * Product service implementation with specification.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Service
 public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue, CatalogueRepository> implements CatalogueService{

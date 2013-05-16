@@ -23,7 +23,7 @@ import java.util.Collection;
 /**
  * Product repository interface.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 public interface CatalogueRepository extends CRUDRepository<Catalogue>{
 

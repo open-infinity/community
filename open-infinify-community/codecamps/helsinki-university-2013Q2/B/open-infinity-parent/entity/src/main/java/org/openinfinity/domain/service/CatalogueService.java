@@ -24,7 +24,7 @@ import org.openinfinity.domain.entity.Product;
 /**
  * Catalogue service interface.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 public interface CatalogueService extends CRUDService<Catalogue> {
 

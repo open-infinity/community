@@ -37,7 +37,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Catalogue entity.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Document
 @Data

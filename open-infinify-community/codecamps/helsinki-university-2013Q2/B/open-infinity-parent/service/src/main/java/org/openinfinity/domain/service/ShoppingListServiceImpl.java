@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Product service implementation with specification.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Service
 public class ShoppingListServiceImpl extends CRUDServiceImpl<ShoppingList, ShoppingListRepository> implements ShoppingListService {

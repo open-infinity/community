@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Product model for exposing product domain to view. 
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 public class ShoppingListModel extends ShoppingList {
 

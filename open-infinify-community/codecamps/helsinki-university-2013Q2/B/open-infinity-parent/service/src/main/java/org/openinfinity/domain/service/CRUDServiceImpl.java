@@ -37,7 +37,7 @@ import javax.annotation.PostConstruct;
 /**
  * Product service implementation with specification.
  * 
- * @author Ilkka Leinonen
+ * @author Joosa Kurvinen
  */
 @Service
 public class CRUDServiceImpl<T extends RepositoryItem, T_REPO extends CRUDRepository<T>> implements CRUDService<T> {
