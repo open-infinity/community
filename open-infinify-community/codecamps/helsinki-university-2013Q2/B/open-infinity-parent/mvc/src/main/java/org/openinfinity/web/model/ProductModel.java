@@ -32,7 +32,7 @@ public class ProductModel extends Product {
 
 	private Product product;
 
-    private String catalogueId;
+    private String catalogue;
 
 	private Map<String, Collection<String>> errorStatuses = new HashMap<String, Collection<String>>();
 
@@ -64,11 +64,11 @@ public class ProductModel extends Product {
 		product.setId(super.getId());
 		product.setName(super.getName());
 		product.setPrice(super.getPrice());
-        //product.setCatalogue(catalogueService.loadById(catalogueId));
+        //product.setCatalogue(catalogueService.loadById(catalogue));
 		return product;
 	}
 
     public String getCatalogueId() {
-        return catalogueId;
+        return catalogue;
     }
 }

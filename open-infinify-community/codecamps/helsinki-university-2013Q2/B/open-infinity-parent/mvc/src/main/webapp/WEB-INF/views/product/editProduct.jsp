@@ -40,7 +40,7 @@
 						<tr>
                             <td><form:label for="catalogue" path="catalogue" cssErrorClass="catalogue">Catalogue</form:label></td>
                             <td>
-                                <form:select path="catalogueId">
+                                <form:select path="catalogue">
                                     <form:options items="${catalogs}" itemValue="id" itemLabel="id"/>
                                 </form:select>
                             </td>
@@ -60,7 +60,18 @@
 				</form:form>
 			</div>	
 		</div>
-		
+
+		    <table>
+                <c:forEach var="o" items="${products}">
+
+                    <tr>
+                    	<td>${o.id}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+
+
+
 		<c:set var="model" value="productModel" />
 		
 <%@ include file="/WEB-INF/views/common/validation_scripts.jsp" %>

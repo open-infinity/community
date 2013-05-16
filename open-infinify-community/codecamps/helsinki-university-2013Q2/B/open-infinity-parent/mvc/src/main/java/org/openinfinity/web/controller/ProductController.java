@@ -113,6 +113,7 @@ public class ProductController {
 	public String createNewProduct(Model model) {
 		model.addAttribute(new ProductModel());
         model.addAttribute("catalogs", catalogueService.loadAll());
+        model.addAttribute("products", productService.loadAll());
 		return "product/editProduct";
 	}
 	
