@@ -104,16 +104,15 @@
     <div class="container">
 
       <div class="masthead">
-        <h3 class="muted">Ultimate TOAS shoppinlist manager</h3>
+        <h3 class="muted">Ultimate TOAS shoppinglist manager</h3>
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
                 <li><a href="<spring:url value="/" htmlEscape="true" />" class="menu"><b>Home</b></a></li>
-                <li><a href="<spring:url value="/manager/catalogue" htmlEscape="true" />" class="menu"><b>Catalogue</b></a></li>
-                <li><a href="<spring:url value="/productModel" htmlEscape="true" />"  class="menu"><b>Product</b></a></li>
+                <li><a href="<spring:url value="/manager/catalogue" htmlEscape="true" />" class="menu"><b>Catalogues</b></a></li>
+                <li><a href="<spring:url value="/productModel" htmlEscape="true" />"  class="menu"><b>Products</b></a></li>
                 <li><a href="<spring:url value="/manager/shoppinglist" htmlEscape="true" />"  class="menu"><b>Shopping Lists</b></a></li>
-                <li><a href="<spring:url value="/purchaser/shoppinglist" htmlEscape="true" />"  class="menu"><b>View Shopping Lists</b></a></li>
               </ul>
             </div>
           </div>

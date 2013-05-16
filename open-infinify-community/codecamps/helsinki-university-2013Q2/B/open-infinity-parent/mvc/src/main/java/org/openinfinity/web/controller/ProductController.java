@@ -129,5 +129,13 @@ public class ProductController {
         return "redirect:/productModel";
 	}
 
+    @RequestMapping(value = "product/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable("id") String itemId, Model model){
+        productService.delete(productService.loadById(itemId));
+
+        model.addAttribute(new ProductModel());
+        return "redirect:/productModel";
+    }
+
 	
 }

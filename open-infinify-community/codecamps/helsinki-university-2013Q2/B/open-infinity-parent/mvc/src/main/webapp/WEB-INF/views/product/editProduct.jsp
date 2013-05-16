@@ -5,74 +5,80 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 
+    <script>
+        function createButton_onClick() {
+         $('#productModel').submit();
+        }
+
+        function deleteButton_onClick() {
+         $('#command').submit();
+        }
+    </script>
 
 
-			<h2>
-				Add new product
-			</h2>
-			<br />
-			<div class="sub_menu"><b>Please Define The Product Information</b></div>
-			<br />			
-			<div id="statusbox"></div>
-			<br/>
+       <div class ="container">
+			
 			<div id="productForm" class="span-12 last">	
 				<form:form modelAttribute="productModel" action="productModel" method="POST">
-					<table id="productTable">
-						<tr>
-							<td><form:label	for="name" path="name" cssErrorClass="error">Name</form:label></td>
-							<td><form:input path="name" /></td>
-							<td><form:errors path="name" /></td>
-						</tr>
-						<tr>	
-							<td><form:label for="description" path="description" cssErrorClass="error">Description</form:label></td>
-							<td><form:input path="description" /></td>
-							<td><form:errors path="description" /></td>
-						</tr>
-						<tr>	
-							<td><form:label for="company" path="company" cssErrorClass="error">Company</form:label></td>
-							<td><form:input path="company" /></td>
-							<td><form:errors path="company" /></td>
-						</tr>
-						<tr>	
-							<td><form:label for="price" path="price" cssErrorClass="error">Price</form:label></td>
-							<td><form:input path="price" /></td>
-							<td><form:errors path="price" /></td>
-						</tr>
-						<tr>
-                            <td><form:label for="catalogue" path="catalogue" cssErrorClass="catalogue">Catalogue</form:label></td>
-                            <td>
+				    <fieldset>
+				            <legend>Create new product</legend>
+							<form:label	for="name" path="name" cssErrorClass="error">Name</form:label>
+							<form:input path="name" />
+							<form:errors path="name" />
+						
+							
+							<form:label for="description" path="description" cssErrorClass="error">Description</form:label>
+							<form:input path="description" />
+							<form:errors path="description" />
+						
+							
+							<form:label for="company" path="company" cssErrorClass="error">Company</form:label>
+							<form:input path="company" />
+							<form:errors path="company" />
+						
+							
+							<form:label for="price" path="price" cssErrorClass="error">Price</form:label>
+							<form:input path="price" />
+							<form:errors path="price" />
+						
+						
+                            <form:label for="catalogue" path="catalogue" cssErrorClass="catalogue">Catalogue</form:label>
+                            
                                 <form:select path="catalogue">
-                                    <form:options items="${catalogs}" itemValue="id" itemLabel="id"/>
+                                    <form:options items="${catalogs}" itemValue="name" itemLabel="name"/>
                                 </form:select>
-                            </td>
-                            <td><form:errors path="catalogue" /></td>
-						</tr>
-						<tr>
-							<td>
-								<p>	
-									<form:hidden path="id" id="id" />
-									<input id="save" type="submit" value="Save" />
+                            
+                            <form:errors path="catalogue" />
+						
+						
+							
 
-								</p>
-							</td>
-							<td></td>
-							<td></td>
-						</tr>
-						</table>
+									<form:hidden path="id" id="id" /><br />
+									<a class="btn btn-primary" href="#" onclick="createButton_onClick()">Create</a>
+
+
+
+						
+					</fieldset>
 				</form:form>
-			</div>	
-		</div>
+			</div>
+	   </div>
+<h2>List of all Products</h2>
 
-        <div class ="container">
-		    <table>
-                <c:forEach var="o" items="${products}">
+    <table class="table table-striped">
+        <tr>
+        <td>Product ID</td><td></td>
+        </tr>
 
-                    <tr>
-                    	<td>${o.id}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
+        <c:forEach var="o" items="${products}">
+            <tr>
+                <form:form method="DELETE" action="product/${o.id}">
+                <td><a href="product/${o.id}">${o.name}</a></td><td><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick()">Delete</a></td>
+                </form:form>
+            </tr>
+        </c:forEach>
+    </table>
+
 
 
 		<c:set var="model" value="productModel" />
