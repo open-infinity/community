@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2013 the original author or authors.
  *
@@ -12,25 +13,19 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-package org.openinfinity.domain.service;
+ */package org.openinfinity.domain.repository;
 
-import java.util.Collection;
-
+import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.ShoppingList;
-import org.openinfinity.domain.entity.Product;
-import org.openinfinity.domain.entity.ShoppingList;
+import org.springframework.stereotype.Repository;
 
 /**
- * Business service for shoppinglist.
+ * Product repository implementation.
  * 
  * @author Ilkka Leinonen
  */
-public interface ShoppingListService extends CRUDService<ShoppingList> {
-
-    public void addProductToShoppingList(Product product, ShoppingList shoppingList);
-    public void removeProductFromShoppingList(Product product, ShoppingList shoppingList);
-    public Collection<Product> listAllProductsInShoppingList(ShoppingList shoppingList);
+@Repository
+public class ShoppingListRepositoryMongoDBImpl extends CRUDRepositoryMongoDBImpl<ShoppingList> implements ShoppingListRepository {
 
 
 

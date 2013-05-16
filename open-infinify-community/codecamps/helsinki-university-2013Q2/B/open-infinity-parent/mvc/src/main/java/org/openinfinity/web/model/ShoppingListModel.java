@@ -15,31 +15,22 @@
  */
 package org.openinfinity.web.model;
 
+import org.openinfinity.domain.entity.Catalogue;
+import org.openinfinity.domain.entity.ShoppingList;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.log4j.Logger;
-import org.openinfinity.domain.entity.Product;
-import org.openinfinity.domain.service.CatalogueService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Product model for exposing product domain to view. 
  * 
  * @author Ilkka Leinonen
  */
-public class ProductModel extends ProductWrapper {
-
-    private static final Logger logger = Logger.getLogger(ProductModel.class);
-
-    private String catalogueId;
+public class ShoppingListModel extends ShoppingList {
 
 	private Map<String, Collection<String>> errorStatuses = new HashMap<String, Collection<String>>();
-
-    @Autowired
-    private CatalogueService catalogueService;
-
+	
 	public void addErrorStatuses(String level, Collection<String> ids) {
 		errorStatuses.put(level, ids);
 	}
@@ -52,32 +43,10 @@ public class ProductModel extends ProductWrapper {
 		this.errorStatuses = errorStatuses;
 	}
 
-	/*@Override
-	public String toString() {
-		return "ProductModel [product=" + product + ", errorStatuses="
-				+ errorStatuses + ", toString()=" + super.toString() + "]";
-	}*/
-	
-	public Product getProduct() {
-		Product product = new Product();
-		product.setCompany(super.getCompany());
-		product.setDescription(super.getDescription());
-		//product.setId(super.getId());
-		product.setName(super.getName());
-		product.setPrice(super.getPrice());
-        catalogueId = super.getCatalogue();
-
-
-        logger.error(
-                "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        );
-        logger.error(super.getId());
-        logger.error(catalogueId);
-
-		return product;
+	public ShoppingList getShoppingList() {
+		ShoppingList shoppingList = new ShoppingList();
+        shoppingList.setName(super.getName());
+		return shoppingList;
 	}
 
-    public String getCatalogueId() {
-        return catalogueId;
-    }
 }

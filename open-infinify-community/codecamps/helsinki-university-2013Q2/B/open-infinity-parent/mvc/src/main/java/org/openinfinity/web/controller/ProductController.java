@@ -49,11 +49,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 
@@ -126,28 +122,19 @@ public class ProductController {
 	@Log
 	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL) 
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Map<String, ? extends Object> create(@Valid @RequestBody ProductModel productModel, HttpServletResponse response) {
+	public String create(@Valid @ModelAttribute ProductModel productModel) {
+        String id = productService.create(productModel.getProduct());
+        Product product = productService.loadById(id);
+        product.setCatalogue(catalogueService.loadById(productModel.getCatalogueId()));
+        productService.update(product);
+        Catalogue catalogue = catalogueService.loadById(productModel.getCatalogueId());
+        catalogue.getProducts().add(product);
+        catalogueService.update(catalogue);
 
+        logger.error("?=????????");
+        logger.error(id);
 
-        //logger.debug(productModel);
-
-		//Set<ConstraintViolation<Product>> failures = validator.validate(productModel.getProduct());
-		//if (failures.isEmpty()) {
-			String id = productService.create(productModel.getProduct());
-            //Product product = productService.loadById(id);
-            //Catalogue catalogue = catalogueService.loadById(productModel.getCatalogueId());
-            //catalogue.getProducts().add(product);
-            //catalogueService.update(catalogue);
-
-            logger.error("?=????????");
-            logger.error(id);
-
-
-            return new ModelMap("id", id);
-	//	} else {
-	//		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	//		return getValidationMessages(failures);
-	//	}
+        return "redirect:/productModel";
 	}
 	
 	private Map<String, String> getValidationMessages(Set<ConstraintViolation<Product>> failures) {

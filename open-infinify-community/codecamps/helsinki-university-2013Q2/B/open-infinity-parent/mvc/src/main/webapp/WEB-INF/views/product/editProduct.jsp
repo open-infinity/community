@@ -15,7 +15,7 @@
 			<div id="statusbox"></div>
 			<br/>
 			<div id="productForm" class="span-12 last">	
-				<form:form modelAttribute="productModel" action="product" method="POST">
+				<form:form modelAttribute="productModel" action="productModel" method="POST">
 					<table id="productTable">
 						<tr>
 							<td><form:label	for="name" path="name" cssErrorClass="error">Name</form:label></td>

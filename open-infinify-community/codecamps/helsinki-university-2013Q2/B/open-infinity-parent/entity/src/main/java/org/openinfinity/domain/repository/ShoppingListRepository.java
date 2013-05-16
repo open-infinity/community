@@ -18,23 +18,13 @@ package org.openinfinity.domain.repository;
 import java.util.Collection;
 
 import org.openinfinity.domain.entity.Product;
+import org.openinfinity.domain.entity.ShoppingList;
 
 /**
  * Shoppinglist repository interface.
  * 
  * @author Ilkka Leinonen
  */
-public interface ShoppingListRepository {
-	
-	Collection<Product> queryByName(String name);
-
-	Product queryById(String id);
-
-	Product addProductToShoppingList(Product product);
-
-	Product updateProductToShoppingList(Product product);
-
-	void deleteProductFromShoppingList(Product product);
-
+public interface ShoppingListRepository extends CRUDRepository<ShoppingList> {
 
 }

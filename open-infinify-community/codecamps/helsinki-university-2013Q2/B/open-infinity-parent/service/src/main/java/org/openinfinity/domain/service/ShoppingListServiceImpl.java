@@ -17,7 +17,8 @@ package org.openinfinity.domain.service;
 
 import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
-import org.openinfinity.domain.repository.CatalogueRepository;
+import org.openinfinity.domain.entity.ShoppingList;
+import org.openinfinity.domain.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,49 +31,39 @@ import java.util.Collection;
  * @author Ilkka Leinonen
  */
 @Service
-public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue, CatalogueRepository> implements CatalogueService{
+public class ShoppingListServiceImpl extends CRUDServiceImpl<ShoppingList, ShoppingListRepository> implements ShoppingListService {
 
     @Autowired
-    private CatalogueRepository catalogueRepository;
+    private ShoppingListRepository shoppingListRepository;
 
-    @Autowired
-    private ProductService productService;
 
-    public CatalogueServiceImpl(){
+    public ShoppingListServiceImpl(){
 
     }
 
     @Autowired
-    public CatalogueServiceImpl(CatalogueRepository catalogueRepository) {
-        super(catalogueRepository);
-    }
-
-    @Override
-    public void delete(Catalogue item) {
-        for(Product product : item.getProducts()){
-            productService.delete(product);
-        }
-        catalogueRepository.delete(item);
+    public ShoppingListServiceImpl(ShoppingListRepository shoppingListRepository) {
+        super(shoppingListRepository);
     }
 
     @Override
     @Transactional
-    public void addProductToCatalogue(Product product, Catalogue catalogue) {
-        catalogue.addProduct(product);
-        catalogueRepository.update(catalogue);
+    public void addProductToShoppingList(Product product, ShoppingList shoppingList) {
+        shoppingList.addProduct(product);
+        shoppingListRepository.update(shoppingList);
     }
 
     @Override
     @Transactional
-    public void removeProductFromCatalogue(Product product, Catalogue catalogue) {
-        catalogue.removeProduct(product);
-        catalogueRepository.update(catalogue);
+    public void removeProductFromShoppingList(Product product, ShoppingList shoppingList) {
+        shoppingList.removeProduct(product);
+        shoppingListRepository.update(shoppingList);
     }
 
     @Override
     @Transactional
-    public Collection<Product> listAllProductsInCatalogue(Catalogue catalogue) {
-        return(catalogue.getProducts());
+    public Collection<Product> listAllProductsInShoppingList(ShoppingList shoppingList) {
+        return(shoppingList.getProducts());
 
     }
 }
