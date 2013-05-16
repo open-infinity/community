@@ -21,9 +21,13 @@ import java.util.Collections;
 
 import lombok.Data;
 
+import lombok.NonNull;
 import org.openinfinity.core.annotation.NotScript;
+import org.openinfinity.domain.repository.RepositoryItem;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Shopping list entity.
@@ -32,15 +36,42 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 @Data
-public class ShoppingList {
+public class ShoppingList implements RepositoryItem {
 	
 	@Id @NotScript
 	private String id;
-	
+
+    @NotScript @NonNull @NotNull
+    private String name;
+
 	private Collection<Product> products = Collections.checkedCollection(new ArrayList<Product>(), Product.class);
 
 	public void addProduct(Product product) {
 		this.products.add(product);
 	}
-	
+
+    public void removeProduct(Product product){
+        this.products.remove(product);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Collection<Product> getProducts() {
+        return products;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

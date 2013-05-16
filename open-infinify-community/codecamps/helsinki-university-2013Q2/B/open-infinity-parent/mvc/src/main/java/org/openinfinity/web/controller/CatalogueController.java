@@ -103,7 +103,7 @@ public class CatalogueController {
         testProduct.setCompany("company");
         testProduct.setPrice(BigDecimal.ONE);
         testProduct.setDescription("blaablaa");
-        productService.create(testProduct);
+        //productService.create(testProduct);
 
         //List<Product> catalogs = new ArrayList<Product>(productService.loadAll());
         List<Catalogue> catalogs = new ArrayList<Catalogue>(catalogueService.loadAll());

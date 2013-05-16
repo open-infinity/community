@@ -13,28 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.openinfinity.domain.entity;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
+package org.openinfinity.web.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-
 import org.openinfinity.core.annotation.NotScript;
+import org.openinfinity.domain.entity.Catalogue;
+import org.openinfinity.domain.entity.ShoppingList;
 import org.openinfinity.domain.repository.RepositoryItem;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.NumberFormat;
+
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Product entity.
@@ -45,40 +42,24 @@ import org.springframework.format.annotation.NumberFormat;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Product implements RepositoryItem{
+public class ProductWrapper {
 
 	@Id @NotScript
 	private String id;
 
 	@NotScript @NotNull @NonNull
 	private String name;
-	
+
 	@NotScript @NotNull @NonNull
 	private String company;
-	
+
 	@NotScript @NotNull @NonNull
 	private String description;
-	
+
 	@NumberFormat @DecimalMin("0.00") @NotNull @NonNull
 	private BigDecimal price;
 
-    //@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Catalogue catalogue;
-
-    //@ManyToOne()
-    private List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>();
-
-//	private Product(String name, String company, String description, BigDecimal price) {
-//		this.name = name;
-//		this.company = company;
-//		this.description = description;
-//		this.price = price;
-//	}
-//	
-//	public static Product newInstance(String name, String company, String description, BigDecimal price) {
-//		return new Product(name, company, description, price);
-//	}
-
+    private String catalogue;
 
     public String getId() {
         return id;
@@ -120,11 +101,11 @@ public class Product implements RepositoryItem{
         this.price = price;
     }
 
-    public Catalogue getCatalogue() {
+    public String getCatalogue() {
         return catalogue;
     }
 
-    public void setCatalogue(Catalogue catalogue) {
+    public void setCatalogue(String catalogue) {
         this.catalogue = catalogue;
     }
 }

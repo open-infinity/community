@@ -115,6 +115,8 @@ public class ProductController {
 	public String createNewProduct(Model model) {
 		model.addAttribute(new ProductModel());
         model.addAttribute("catalogs", catalogueService.loadAll());
+        
+        
         model.addAttribute("products", productService.loadAll());
 		return "product/editProduct";
 	}
@@ -124,6 +126,8 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String create(@Valid @ModelAttribute ProductModel productModel, HttpServletResponse response) {
 
+        logger.error("?=????????");
+        logger.error(id);
 
         //logger.debug(productModel);
 

@@ -17,23 +17,21 @@ package org.openinfinity.domain.service;
 
 import java.util.Collection;
 
+import org.openinfinity.domain.entity.ShoppingList;
 import org.openinfinity.domain.entity.Product;
+import org.openinfinity.domain.entity.ShoppingList;
 
 /**
  * Business service for shoppinglist.
  * 
  * @author Ilkka Leinonen
  */
-public interface ShoppingListService {
-	
-	Collection<Product> queryByName(String name);
-	
-	Product queryById(String id);
-	
-	Product addProductToShoppingList(Product product);
-	
-	Product updateProductToShoppingList(Product product);
-	
-	void deleteProductFromShoppingList(Product product);
+public interface ShoppingListService extends CRUDService<ShoppingList> {
+
+    public void addProductToShoppingList(Product product, ShoppingList shoppingList);
+    public void removeProductFromShoppingList(Product product, ShoppingList shoppingList);
+    public Collection<Product> listAllProductsInShoppingList(ShoppingList shoppingList);
+
+
 
 }
