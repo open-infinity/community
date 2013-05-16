@@ -13,7 +13,7 @@
         <div id="statusbox"></div>
         <br/>
         <div id="shoppinglistForm" class="span-12 last">
-            <form:form commandName="ShoppingListModel" action="shoppinglist" method="post">
+            <form:form commandName="shoppingListModel" action="shoppinglist" method="post">
                 <table id="shoppinglistTable">
                     <tr>
                         <td><form:label	for="name" path="name" cssErrorClass="error">Name</form:label></td>
@@ -37,7 +37,7 @@
     <br/>
 
 <table>
-    <c:forEach var="pp" items="${shoppinglist}">
+    <c:forEach var="pp" items="${shoppinglists}">
         <tr>
             <form:form method="DELETE" action="shoppinglist/${pp.id}">
                 <td><a href="shoppinglist/${pp.id}">${pp.id} ${pp.name}</a></td><td><input type="submit" value="Delete"></td>
@@ -46,7 +46,7 @@
     </c:forEach>
 </table>
 
-<c:set var="model" value="ShoppingListModel" />
+<c:set var="model" value="shoppingListModel" />
 
 
 <%@ include file="/WEB-INF/views/common/validation_scripts.jsp" %>

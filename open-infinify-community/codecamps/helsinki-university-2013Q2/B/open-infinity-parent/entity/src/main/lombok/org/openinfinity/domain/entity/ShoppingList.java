@@ -46,7 +46,10 @@ public class ShoppingList implements RepositoryItem {
 
 	private Collection<Product> products = Collections.checkedCollection(new ArrayList<Product>(), Product.class);
 
-	public void addProduct(Product product) {
+    public ShoppingList() {
+    }
+
+    public void addProduct(Product product) {
 		this.products.add(product);
 	}
 

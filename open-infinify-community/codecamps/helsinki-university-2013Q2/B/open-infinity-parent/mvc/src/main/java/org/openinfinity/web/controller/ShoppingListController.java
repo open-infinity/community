@@ -80,44 +80,42 @@ public class ShoppingListController {
 
     @Log
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
-    @RequestMapping(value = "shoppingList")
+    @RequestMapping(value = "shoppinglist")
     public String ManageShoppingLists(Model model){
         List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>(shoppingListService.loadAll());
 
-        model.addAttribute("shoppingLists", shoppingLists);
+        model.addAttribute("shoppinglists", shoppingLists);
         model.addAttribute(new ShoppingListModel());
 
-        return "shoppingList/listAll";
+        return "shoppinglist/myshoplist";
     }
 
 
-    @RequestMapping(value = "shoppingList/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "shoppinglist/{id}", method = RequestMethod.DELETE)
     public String delete(@PathVariable("id") String itemId, Model model){
         shoppingListService.delete(shoppingListService.loadById(itemId));
 
         model.addAttribute(new ShoppingListModel());
-        return "redirect:/manager/shoppingList";
+        return "redirect:/manager/shoppinglist";
     }
 
 
-    @RequestMapping(value = "shoppingList/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "shoppinglist/{id}", method = RequestMethod.GET)
     public String view(@PathVariable("id") String itemId, Model model){
 
          model.addAttribute("productlist", shoppingListService.listAllProductsInShoppingList(shoppingListService.loadById(itemId)));
          model.addAttribute("name",itemId);
 
-        return "shoppingList/view";
+        return "shoppinglist/view";
     }
 
 
     @Log
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
-    @RequestMapping(value = "shoppingList", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute ShoppingListModel shoppingListModel, HttpServletResponse response) {
-        String id = shoppingListService.create(shoppingListModel.getShoppingList());
-
-        return "redirect:/manager/shoppingList";
-        
+    @RequestMapping(value = "shoppinglist", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute ShoppingListModel shoppingListModel) {
+        shoppingListService.create(shoppingListModel.getShoppingList());
+        return "redirect:/manager/shoppinglist";
     }
 
 }

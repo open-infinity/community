@@ -124,38 +124,10 @@ public class ProductController {
 	@Log
 	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL) 
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute ProductModel productModel, HttpServletResponse response) {
-
-        logger.error("?=????????");
-        logger.error(id);
-
-        //logger.debug(productModel);
-
-		//Set<ConstraintViolation<Product>> failures = validator.validate(productModel.getProduct());
-		//if (failures.isEmpty()) {
-			String id = productService.create(productModel.getProduct());
-            //Product product = productService.loadById(id);
-            //Catalogue catalogue = catalogueService.loadById(productModel.getCatalogueId());
-            //catalogue.getProducts().add(product);
-            //catalogueService.update(catalogue);
-
-            logger.error("?=????????");
-            logger.error(id);
-
-
-            return "redirect:/productModel";
-	//	} else {
-	//		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	//		return getValidationMessages(failures);
-	//	}
+	public String create(@Valid @ModelAttribute ProductModel productModel) {
+        String id = productService.create(productModel.getProduct());
+        return "redirect:/productModel";
 	}
-	
-	private Map<String, String> getValidationMessages(Set<ConstraintViolation<Product>> failures) {
-		Map<String, String> failureMessages = new HashMap<String, String>();
-		for (ConstraintViolation<Product> failure : failures) {
-			failureMessages.put(failure.getPropertyPath().toString(), failure.getMessage());
-		}
-		return failureMessages;
-	}
+
 	
 }
