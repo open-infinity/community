@@ -105,8 +105,8 @@ public class CatalogueController {
         testProduct.setDescription("blaablaa");
         productService.create(testProduct);
 
-        List<Product> catalogs = new ArrayList<Product>(productService.loadAll());
-        //List<Catalogue> catalogs = new ArrayList<Catalogue>(catalogueService.loadAll());
+        //List<Product> catalogs = new ArrayList<Product>(productService.loadAll());
+        List<Catalogue> catalogs = new ArrayList<Catalogue>(catalogueService.loadAll());
 
         model.addAttribute("catalogs", catalogs);
         model.addAttribute(new CatalogueModel());
@@ -145,14 +145,14 @@ public class CatalogueController {
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
     @RequestMapping(value = "catalogue", method = RequestMethod.POST)
     public @ResponseBody Map<String, ? extends Object> create(@Valid @RequestBody CatalogueModel catalogueModel, HttpServletResponse response) {
-        Set<ConstraintViolation<Catalogue>> failures = validator.validate(catalogueModel.getCatalogue());
-        if (failures.isEmpty()) {
+       // Set<ConstraintViolation<Catalogue>> failures = validator.validate(catalogueModel.getCatalogue());
+       // if (failures.isEmpty()) {
             String id = catalogueService.create(catalogueModel.getCatalogue());
             return new ModelMap("id", id);
-        } else {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return getValidationMessages(failures);
-        }
+        //} else {
+         //   response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+         //   return getValidationMessages(failures);
+        //}
     }
 
     private Map<String, String> getValidationMessages(Set<ConstraintViolation<Catalogue>> failures) {

@@ -53,7 +53,7 @@ public class CatalogueModel extends Catalogue {
 
 	public Catalogue getCatalogue() {
 		Catalogue catalogue = new Catalogue();
-		catalogue.setId(super.getId());
+		//catalogue.setId(super.getId());
         catalogue.setName(super.getName());
 		return catalogue;
 	}

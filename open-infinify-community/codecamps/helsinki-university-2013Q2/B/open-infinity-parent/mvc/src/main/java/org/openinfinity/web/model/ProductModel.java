@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.openinfinity.domain.entity.Product;
 import org.openinfinity.domain.service.CatalogueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ProductModel extends Product {
 
 	private Product product;
+
+    private static final Logger logger = Logger.getLogger(ProductModel.class);
+
 
     private String catalogue;
 
@@ -61,10 +65,17 @@ public class ProductModel extends Product {
 		Product product = new Product();
 		product.setCompany(super.getCompany());
 		product.setDescription(super.getDescription());
-		product.setId(super.getId());
+		//product.setId(super.getId());
 		product.setName(super.getName());
 		product.setPrice(super.getPrice());
         //product.setCatalogue(catalogueService.loadById(catalogue));
+
+        logger.error(
+                "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        );
+        logger.error(super.getId());
+        logger.error(catalogue);
+
 		return product;
 	}
 

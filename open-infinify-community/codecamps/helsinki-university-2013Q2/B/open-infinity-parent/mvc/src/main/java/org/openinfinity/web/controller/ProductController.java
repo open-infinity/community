@@ -27,6 +27,9 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.Validator;
 
+import org.apache.log4j.Logger;
+
+
 import org.openinfinity.core.annotation.AuditTrail;
 import org.openinfinity.core.annotation.Log;
 import org.openinfinity.core.aspect.ArgumentStrategy;
@@ -61,6 +64,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/productModel")
 public class ProductController {
+
+    private static final Logger logger = Logger.getLogger(ProductController.class);
+
 
 	@Autowired
 	private ProductService productService;
@@ -121,18 +127,27 @@ public class ProductController {
 	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL) 
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody Map<String, ? extends Object> create(@Valid @RequestBody ProductModel productModel, HttpServletResponse response) {
-		Set<ConstraintViolation<Product>> failures = validator.validate(productModel.getProduct());
-		if (failures.isEmpty()) {
+
+
+        //logger.debug(productModel);
+
+		//Set<ConstraintViolation<Product>> failures = validator.validate(productModel.getProduct());
+		//if (failures.isEmpty()) {
 			String id = productService.create(productModel.getProduct());
             //Product product = productService.loadById(id);
             //Catalogue catalogue = catalogueService.loadById(productModel.getCatalogueId());
             //catalogue.getProducts().add(product);
             //catalogueService.update(catalogue);
+
+            logger.error("?=????????");
+            logger.error(id);
+
+
             return new ModelMap("id", id);
-		} else {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			return getValidationMessages(failures);
-		}
+	//	} else {
+	//		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	//		return getValidationMessages(failures);
+	//	}
 	}
 	
 	private Map<String, String> getValidationMessages(Set<ConstraintViolation<Product>> failures) {
