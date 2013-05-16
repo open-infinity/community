@@ -3,13 +3,13 @@
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="jumbotron">
-        <h2>Open Infinity - Team B</h2>
+        <h1>Ultimate shoppinglist management solution</h1>
         <br />
-        <div class="sub_menu"><b>The Shopping Application</b></div>
+        <div class="sub_menu"><b>Team B</b></div>
         <br />
-        <p><spring:message code="server.time"/> ${serverTime}.</p>
+        <p>Team B presents ultimate solution for your everyday shoppinglist needs!</p>
             <br/><br/>
-            <a class="btn btn-large btn-primary" href="#">New shoppinglist</a>
+            <a class="btn btn-large btn-primary" href="manager/shoppinglist">New shoppinglist</a>
             <br/><br/>
 
 	</div>

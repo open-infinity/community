@@ -45,7 +45,14 @@
 
     <br/>
 
-<table>
+<h2>List of all shopping lists</h2>
+<table class="table table-striped">
+
+    <tr>
+    <td>List ID</td><td></td>
+    </tr>
+
+
     <c:forEach var="pp" items="${shoppinglists}">
         <tr>
             <form:form method="DELETE" action="shoppinglist/${pp.id}">
