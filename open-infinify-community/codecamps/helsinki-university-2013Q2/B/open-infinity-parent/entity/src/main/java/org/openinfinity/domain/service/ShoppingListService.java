@@ -16,6 +16,7 @@
 package org.openinfinity.domain.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.openinfinity.domain.entity.ShoppingList;
 import org.openinfinity.domain.entity.Product;
@@ -30,7 +31,7 @@ public interface ShoppingListService extends CRUDService<ShoppingList> {
 
     public void addProductToShoppingList(Product product, ShoppingList shoppingList);
     public void removeProductFromShoppingList(Product product, ShoppingList shoppingList);
-    public Collection<Product> listAllProductsInShoppingList(ShoppingList shoppingList);
+    public List<Product> listAllProductsInShoppingList(ShoppingList shoppingList);
 
 
 

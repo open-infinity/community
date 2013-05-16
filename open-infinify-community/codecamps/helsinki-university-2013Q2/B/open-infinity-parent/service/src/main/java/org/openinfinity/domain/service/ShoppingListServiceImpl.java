@@ -23,7 +23,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Product service implementation with specification.
@@ -62,8 +64,8 @@ public class ShoppingListServiceImpl extends CRUDServiceImpl<ShoppingList, Shopp
 
     @Override
     @Transactional
-    public Collection<Product> listAllProductsInShoppingList(ShoppingList shoppingList) {
-        return(shoppingList.getProducts());
+    public List<Product> listAllProductsInShoppingList(ShoppingList shoppingList) {
+        return(new ArrayList<Product>(shoppingList.getProducts()));
 
     }
 }

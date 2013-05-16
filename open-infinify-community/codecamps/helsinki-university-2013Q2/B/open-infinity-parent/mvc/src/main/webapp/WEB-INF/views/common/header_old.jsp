@@ -19,7 +19,7 @@
 				<div id="menu" class="menu"> 
 					<a href="<spring:url value="/" htmlEscape="true" />" class="menu"><b>Home</b></a> |
 					<a href="<spring:url value="/productModel" htmlEscape="true" />"  class="menu"><b>Product</b></a> |
-					<a href="<spring:url value="/manager/catalogue" htmlEscape="true" />" class="menu"><b>Catalogue</b></a> |
+					<a href="<spring:url value="/manager/catalogueId" htmlEscape="true" />" class="menu"><b>Catalogue</b></a> |
 					<a href="<spring:url value="/manager/shoppinglist" htmlEscape="true" />"  class="menu"><b>Shopping Lists</b></a> |
 					<a href="<spring:url value="/purchaser/shoppinglist" htmlEscape="true" />"  class="menu"><b>View Shopping Lists</b></a>
 				</div>

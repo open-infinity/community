@@ -22,7 +22,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Product service implementation with specification.
@@ -70,9 +72,8 @@ public class CatalogueServiceImpl extends CRUDServiceImpl<Catalogue, CatalogueRe
     }
 
     @Override
-    @Transactional
-    public Collection<Product> listAllProductsInCatalogue(Catalogue catalogue) {
-        return(catalogue.getProducts());
+    public List<Product> listAllProductsInCatalogue(Catalogue catalogue) {
+        return(new ArrayList<Product>(catalogue.getProducts()));
 
     }
 }

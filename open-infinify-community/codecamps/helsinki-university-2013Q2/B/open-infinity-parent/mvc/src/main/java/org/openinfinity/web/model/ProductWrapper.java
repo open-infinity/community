@@ -20,9 +20,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.openinfinity.core.annotation.NotScript;
-import org.openinfinity.domain.entity.Catalogue;
-import org.openinfinity.domain.entity.ShoppingList;
-import org.openinfinity.domain.repository.RepositoryItem;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.NumberFormat;
@@ -30,8 +27,6 @@ import org.springframework.format.annotation.NumberFormat;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Product entity.
@@ -59,7 +54,8 @@ public class ProductWrapper {
 	@NumberFormat @DecimalMin("0.00") @NotNull @NonNull
 	private BigDecimal price;
 
-    private String catalogue;
+    @NotScript @NotNull @NonNull
+    private String catalogueId;
 
     public String getId() {
         return id;
@@ -101,11 +97,11 @@ public class ProductWrapper {
         this.price = price;
     }
 
-    public String getCatalogue() {
-        return catalogue;
+    public String getCatalogueId() {
+        return catalogueId;
     }
 
-    public void setCatalogue(String catalogue) {
-        this.catalogue = catalogue;
+    public void setCatalogueId(String catalogueId) {
+        this.catalogueId = catalogueId;
     }
 }

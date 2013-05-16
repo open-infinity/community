@@ -15,6 +15,7 @@
  */
 package org.openinfinity.web.controller;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -58,7 +59,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Ilkka Leinonen
  */
 @Controller
-@RequestMapping(value = "/productModel")
+@RequestMapping(value = "/manager/product")
 public class ProductController {
 
     private static final Logger logger = Logger.getLogger(ProductController.class);
@@ -112,12 +113,19 @@ public class ProductController {
 	@Log
 	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
 	@RequestMapping(method = RequestMethod.GET)
-	public String createNewProduct(Model model) {
-		model.addAttribute(new ProductModel());
-        model.addAttribute("catalogs", catalogueService.loadAll());
-        
-        
-        model.addAttribute("products", productService.loadAll());
+	public String manageProducts(Model model) {
+        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
+        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
+        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
+        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
+        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
+        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
+        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
+        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
+        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
+        model.addAttribute(new ProductModel());
+        model.addAttribute("catalogs", new ArrayList<Catalogue>(catalogueService.loadAll()));
+        model.addAttribute("products", new ArrayList<Product>(productService.loadAll()));
 		return "product/editProduct";
 	}
 	
@@ -125,17 +133,33 @@ public class ProductController {
 	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL) 
 	@RequestMapping(method = RequestMethod.POST)
 	public String create(@Valid @ModelAttribute ProductModel productModel) {
-        String id = productService.create(productModel.getProduct());
-        return "redirect:/productModel";
+        logger.debug("POST "+productModel.getProduct());
+        Product product = productModel.getProduct();
+
+        Catalogue catalogue = catalogueService.loadById(productModel.getCatalogueId());
+        productService.create(product);
+        catalogue.addProduct(product);
+        catalogueService.update(catalogue);
+
+        //model.addAttribute(new ProductModel());
+        return "redirect:/manager/product";
 	}
 
-    @RequestMapping(value = "product/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public String delete(@PathVariable("id") String itemId, Model model){
         productService.delete(productService.loadById(itemId));
 
         model.addAttribute(new ProductModel());
-        return "redirect:/productModel";
+        return "redirect:/manager/product";
     }
 
-	
+    private Map<String, String> getValidationMessages(Set<ConstraintViolation<Product>> failures) {
+        Map<String, String> failureMessages = new HashMap<String, String>();
+        for (ConstraintViolation<Product> failure : failures) {
+            failureMessages.put(failure.getPropertyPath().toString(), failure.getMessage());
+        }
+        return failureMessages;
+    }
+
+
 }

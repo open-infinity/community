@@ -63,7 +63,7 @@ public class Product implements RepositoryItem{
 	private BigDecimal price;
 
     //@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Catalogue catalogue;
+    //private Catalogue catalogue;
 
     //@ManyToOne()
     private List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>();
@@ -120,11 +120,5 @@ public class Product implements RepositoryItem{
         this.price = price;
     }
 
-    public Catalogue getCatalogue() {
-        return catalogue;
-    }
 
-    public void setCatalogue(Catalogue catalogue) {
-        this.catalogue = catalogue;
-    }
 }

@@ -53,9 +53,10 @@ public class ProductServiceImpl extends CRUDServiceImpl<Product, ProductReposito
 
 
 
-  @Override
+    @Override
     @Log
     @AuditTrail
+    @Transactional
     public String create(Product product) {
         Collection<Product> products = productRepository.loadByName(product.getName());
         if (productSpecification.isNotEligibleForCreation(product, products)) {

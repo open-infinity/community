@@ -16,6 +16,7 @@
 package org.openinfinity.domain.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
@@ -30,7 +31,7 @@ public interface CatalogueService extends CRUDService<Catalogue> {
     public void addProductToCatalogue(Product product, Catalogue catalogue);
     //public void updateProductFromCatalogue(Product product, Catalogue catalogue);
     public void removeProductFromCatalogue(Product product, Catalogue catalogue);
-    public Collection<Product> listAllProductsInCatalogue(Catalogue catalogue);
+    public List<Product> listAllProductsInCatalogue(Catalogue catalogue);
 
 
 }

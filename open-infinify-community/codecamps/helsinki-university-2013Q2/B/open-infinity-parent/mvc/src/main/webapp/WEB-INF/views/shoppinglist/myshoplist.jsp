@@ -62,8 +62,6 @@
     </c:forEach>
 </table>
 
-<c:set var="model" value="shoppingListModel" />
-
 
 <%@ include file="/WEB-INF/views/common/validation_scripts.jsp" %>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

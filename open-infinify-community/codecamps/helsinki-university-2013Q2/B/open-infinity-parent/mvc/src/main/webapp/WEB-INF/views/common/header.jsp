@@ -111,7 +111,7 @@
               <ul class="nav">
                 <li><a href="<spring:url value="/" htmlEscape="true" />" class="menu"><b>Home</b></a></li>
                 <li><a href="<spring:url value="/manager/catalogue" htmlEscape="true" />" class="menu"><b>Catalogues</b></a></li>
-                <li><a href="<spring:url value="/productModel" htmlEscape="true" />"  class="menu"><b>Products</b></a></li>
+                <li><a href="<spring:url value="/manager/product" htmlEscape="true" />"  class="menu"><b>Products</b></a></li>
                 <li><a href="<spring:url value="/manager/shoppinglist" htmlEscape="true" />"  class="menu"><b>Shopping Lists</b></a></li>
               </ul>
             </div>

@@ -33,6 +33,8 @@ public class ProductModel extends ProductWrapper {
 
     private static final Logger logger = Logger.getLogger(ProductModel.class);
 
+    private Product product;
+
     private String catalogueId;
 
 	private Map<String, Collection<String>> errorStatuses = new HashMap<String, Collection<String>>();
@@ -52,11 +54,11 @@ public class ProductModel extends ProductWrapper {
 		this.errorStatuses = errorStatuses;
 	}
 
-	/*@Override
+	@Override
 	public String toString() {
 		return "ProductModel [product=" + product + ", errorStatuses="
 				+ errorStatuses + ", toString()=" + super.toString() + "]";
-	}*/
+	}
 	
 	public Product getProduct() {
 		Product product = new Product();
@@ -65,7 +67,7 @@ public class ProductModel extends ProductWrapper {
 		//product.setId(super.getId());
 		product.setName(super.getName());
 		product.setPrice(super.getPrice());
-        catalogueId = super.getCatalogue();
+        catalogueId = super.getCatalogueId();
 
 
         logger.error(

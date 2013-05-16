@@ -33,11 +33,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-@RequestMapping(value = "/manager")
+@RequestMapping(value = "/manager/catalogue")
 public class CatalogueController {
-
-    @Autowired
-    private ProductService productService;
 
     @Autowired
     private CatalogueService catalogueService;
@@ -96,8 +93,8 @@ public class CatalogueController {
 
     @Log
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
-    @RequestMapping(value = "catalogue")
-    public String ManageCatalogues(Model model){
+    @RequestMapping(method = RequestMethod.GET)
+    public String manageCatalogues(Model model){
         Product testProduct = new Product();
         testProduct.setName("testinimi");
         testProduct.setCompany("company");
@@ -115,7 +112,7 @@ public class CatalogueController {
     }
 
 
-    @RequestMapping(value = "catalogue/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public String delete(@PathVariable("id") String itemId, Model model){
         catalogueService.delete(catalogueService.loadById(itemId));
 
@@ -125,55 +122,29 @@ public class CatalogueController {
 
     /*@RequestMapping(value = "catalogue", method = RequestMethod.POST)
     public String create(@ModelAttribute CatalogueModel catalogueModel, Model model){
-        catalogueService.create(catalogueModel.getCatalogue());
+        catalogueService.create(catalogueModel.getCatalogueId());
         model.addAttribute(new CatalogueModel());
         return "redirect:/manager/cataloguemm";
     } */
 
-    @RequestMapping(value = "catalogue/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public String view(@PathVariable("id") String itemId, Model model){
 
          model.addAttribute("productlist", catalogueService.listAllProductsInCatalogue(catalogueService.loadById(itemId)));
-         model.addAttribute("name",itemId);
+         model.addAttribute("name", catalogueService.loadById(itemId).getName());
 
         return "catalogue/view";
     }
 
 
-   /*
-    @Log
-    @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
-    @RequestMapping(value = "catalogue", method = RequestMethod.POST)
-    public @ResponseBody Map<String, ? extends Object> create(@Valid @ModelAttribute CatalogueModel catalogueModel, HttpServletResponse response) {
-       // Set<ConstraintViolation<Catalogue>> failures = validator.validate(catalogueModel.getCatalogue());
-       // if (failures.isEmpty()) {
-
-
-            String id = catalogueService.create(catalogueModel.getCatalogue());
-
-            return new ModelMap("id", id);
-        //} else {
-         //   response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-         //   return getValidationMessages(failures);
-        //}
-    }
-     */
 
     @Log
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
-    @RequestMapping(value = "catalogue", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute CatalogueModel catalogueModel, HttpServletResponse response) {
-        // Set<ConstraintViolation<Catalogue>> failures = validator.validate(catalogueModel.getCatalogue());
-        // if (failures.isEmpty()) {
-
-
+    @RequestMapping(method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute CatalogueModel catalogueModel) {
         String id = catalogueService.create(catalogueModel.getCatalogue());
 
         return "redirect:/manager/catalogue";
-        //} else {
-        //   response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        //   return getValidationMessages(failures);
-        //}
     }
 
     private Map<String, String> getValidationMessages(Set<ConstraintViolation<Catalogue>> failures) {

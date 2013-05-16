@@ -29,14 +29,11 @@ import java.util.*;
 
 
 @Controller
-@RequestMapping(value = "/manager")
+@RequestMapping(value = "/manager/shoppinglist")
 public class ShoppingListController {
 
     private static final Logger logger = Logger.getLogger(ShoppingListController.class);
 
-
-    @Autowired
-    private ProductService productService;
 
     @Autowired
     private ShoppingListService shoppingListService;
@@ -86,7 +83,7 @@ public class ShoppingListController {
 
     @Log
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
-    @RequestMapping(value = "shoppinglist")
+    @RequestMapping(method = RequestMethod.GET)
     public String ManageShoppingLists(Model model){
         List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>(shoppingListService.loadAll());
 
@@ -97,7 +94,7 @@ public class ShoppingListController {
     }
 
 
-    @RequestMapping(value = "shoppinglist/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public String delete(@PathVariable("id") String itemId, Model model){
         shoppingListService.delete(shoppingListService.loadById(itemId));
 
@@ -106,11 +103,11 @@ public class ShoppingListController {
     }
 
 
-    @RequestMapping(value = "shoppinglist/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public String view(@PathVariable("id") String itemId, Model model){
 
          model.addAttribute("productlist", shoppingListService.listAllProductsInShoppingList(shoppingListService.loadById(itemId)));
-         model.addAttribute("name",itemId);
+         model.addAttribute("name",shoppingListService.loadById(itemId).getName());
 
         return "shoppinglist/view";
     }
@@ -118,8 +115,8 @@ public class ShoppingListController {
 
     @Log
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
-    @RequestMapping(value = "shoppingListModel", method = RequestMethod.POST)
-    public String create(@ModelAttribute ShoppingListModel shoppingListModel) {
+    @RequestMapping(method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute ShoppingListModel shoppingListModel) {
 
         logger.error("asdf!!!!!!!!!!!!!!");
 
