@@ -25,6 +25,7 @@
                             <p>
                                 <form:hidden path="id" id="id" />
                                 <input id="save" type="submit" value="Create" />
+                                <input id="save" type="submit" value="Back" />
                             </p>
                         </td>
                     </tr>
