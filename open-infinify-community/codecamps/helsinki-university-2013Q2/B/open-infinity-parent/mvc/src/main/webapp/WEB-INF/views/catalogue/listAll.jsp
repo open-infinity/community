@@ -51,7 +51,7 @@
     <c:forEach var="o" items="${catalogs}">
         <tr>
             <form:form method="DELETE" action="catalogue/${o.id}">
-                <td><a href="catalogue/${o.id}">${o.name}</a></td><td><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick()">DELETE!</a></td>
+                <td><a href="catalogue/${o.id}">${o.name}</a></td><td><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick()">Delete</a></td>
             </form:form>
         </tr>
     </c:forEach>

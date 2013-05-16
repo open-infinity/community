@@ -4,6 +4,18 @@
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
+
+    <script>
+        function createButton_onClick() {
+         $('#shoppingListModel').submit();
+        }
+
+        function deleteButton_onClick() {
+         $('#command').submit();
+        }
+    </script>
+
+
     <div class="container">
         <br />
         <h2>
@@ -14,22 +26,19 @@
         <br/>
         <div id="shoppinglistForm" class="span-12 last">
             <form:form commandName="shoppingListModel" action="shoppinglist" method="post">
-                <table id="shoppinglistTable">
-                    <tr>
-                        <td><form:label	for="name" path="name" cssErrorClass="error">Name</form:label></td>
-                        <td><form:input path="name" /></td>
-                        <td><form:errors path="name" /></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>
-                                <form:hidden path="id" id="id" />
-                                <input id="save" type="submit" value="Create" />
-                                <input id="save" type="submit" value="Back" />
-                            </p>
-                        </td>
-                    </tr>
-                </table>
+                <fieldset>
+
+                            <legend>Create new shopping list</legend>
+                            <form:label	for="name" path="name" cssErrorClass="error">Name</form:label>
+                            <form:input path="name" />
+                            <form:errors path="name" />
+
+                            <form:hidden path="id" id="id" /><br />
+                            <a class="btn btn-primary" href="#" onclick="createButton_onClick()">Create</a>
+
+
+
+                </fieldset>
             </form:form>
         </div>
     </div>
@@ -40,7 +49,7 @@
     <c:forEach var="pp" items="${shoppinglists}">
         <tr>
             <form:form method="DELETE" action="shoppinglist/${pp.id}">
-                <td><a href="shoppinglist/${pp.id}">${pp.id} ${pp.name}</a></td><td><input type="submit" value="Delete"></td>
+                <td><a href="shoppinglist/${pp.id}">${pp.id}${pp.name}</a></td><td><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick()">Delete</a></td>
             </form:form>
         </tr>
     </c:forEach>
