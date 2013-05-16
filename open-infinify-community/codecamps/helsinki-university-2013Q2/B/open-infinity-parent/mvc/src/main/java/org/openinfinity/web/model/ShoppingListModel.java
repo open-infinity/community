@@ -29,6 +29,8 @@ import java.util.Map;
  */
 public class ShoppingListModel extends ShoppingList {
 
+    private ShoppingList shoppingList;
+
 	private Map<String, Collection<String>> errorStatuses = new HashMap<String, Collection<String>>();
 	
 	public void addErrorStatuses(String level, Collection<String> ids) {
