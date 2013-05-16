@@ -27,9 +27,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * Shopping list entity.
- * 
- * @author Ilkka Leinonen
+ *
+ * @author Jarno Knihtilä
  */
 @Document
 @Data

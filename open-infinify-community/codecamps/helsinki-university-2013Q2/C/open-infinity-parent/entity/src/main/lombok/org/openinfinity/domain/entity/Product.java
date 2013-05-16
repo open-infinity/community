@@ -32,9 +32,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.NumberFormat;
 
 /**
- * Product entity.
- * 
- * @author Ilkka Leinonen
+ *
+ * @author Jarno Knihtilä
  */
 @Document
 @Data
@@ -58,16 +57,5 @@ public class Product {
         
         @NotScript @NonNull
 	private String gtinCode;
-	
-//	private Product(String name, String company, String description, BigDecimal price) {
-//		this.name = name;
-//		this.company = company;
-//		this.description = description;
-//		this.price = price;
-//	}
-//	
-//	public static Product newInstance(String name, String company, String description, BigDecimal price) {
-//		return new Product(name, company, description, price);
-//	}
 	
 }

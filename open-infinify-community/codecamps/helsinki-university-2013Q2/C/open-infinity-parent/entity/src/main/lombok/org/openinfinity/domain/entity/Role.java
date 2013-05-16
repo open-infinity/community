@@ -9,13 +9,9 @@ import org.openinfinity.core.annotation.NotScript;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
- * @author jknihtil
+ * @author Jarno Knihtilä
  */
 @Document
 @Data

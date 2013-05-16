@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
- * @author jarno
+ * @author Jarno Knihtilä
  */
 @Controller
 @RequestMapping(value = "/catalogue")

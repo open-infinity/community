@@ -1,7 +1,5 @@
 <%-- 
-    Document   : shoppingList
-    Created on : 16-May-2013, 13:16:05
-    Author     : jknihtil
+    Author     : Jarno Knihtilä
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

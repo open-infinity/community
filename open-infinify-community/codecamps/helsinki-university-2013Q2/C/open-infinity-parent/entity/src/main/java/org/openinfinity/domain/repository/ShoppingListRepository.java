@@ -23,21 +23,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * Shoppinglist repository interface.
  * 
- * @author Ilkka Leinonen
+ * @author Jarno Knihtilä
  */
 public interface ShoppingListRepository extends MongoRepository<ShoppingList, String>{
     
         List<ShoppingList> findByManager(User manager);
         List<ShoppingList> findByBuyers(User buyers);
-    
-//	Collection<Product> queryByName(String name);
-//	
-//	Product queryById(String id);
-//	
-//	Product addProductToShoppingList(Product product);
-//	
-//	Product updateProductToShoppingList(Product product);
-//	
-//	void deleteProductFromShoppingList(Product product);
 
 }

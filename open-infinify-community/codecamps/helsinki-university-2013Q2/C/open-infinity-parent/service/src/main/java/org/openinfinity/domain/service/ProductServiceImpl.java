@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
 /**
  * Product service implementation with specification.
  *
- * @author Ilkka Leinonen
+ * @author Jarno Knihtilä
  */
 @Service
 public class ProductServiceImpl implements ProductService {

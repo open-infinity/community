@@ -28,7 +28,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Catalogue entity.
  * 
- * @author Ilkka Leinonen
+ * @author Jarno Knihtilä
  */
 @Document
 @Data

@@ -22,9 +22,8 @@ import java.util.Map;
 import org.openinfinity.domain.entity.Product;
 
 /**
- * Product model for exposing product domain to view. 
- * 
- * @author Ilkka Leinonen
+ *
+ * @author Jarno Knihtilä
  */
 public class ProductModel extends Product {
 
