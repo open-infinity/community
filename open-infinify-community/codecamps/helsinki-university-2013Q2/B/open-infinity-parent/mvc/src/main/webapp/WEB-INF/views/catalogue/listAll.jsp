@@ -4,43 +4,54 @@
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
+    <script>
+    function createButton_onClick() {
+     $('#catalogueModel').submit();
+    }
+
+    function deleteButton_onClick() {
+     $('#command').submit();
+    }
+
+    </script>
+
     <div class="container">
-        <br />
-        <h2>
-            Create new catalogue
-        </h2>
         <br />
         <div id="statusbox"></div>
         <br/>
         <div id="catalogueForm" class="span-12 last">
             <form:form commandName="catalogueModel" action="catalogue" method="post">
-                <table id="catalogueTable">
-                    <tr>
-                        <td><form:label	for="name" path="name" cssErrorClass="error">Name</form:label></td>
-                        <td><form:input path="name" /></td>
-                        <td><form:errors path="name" /></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>
-                                <form:hidden path="id" id="id" />
-                                <input id="save" type="submit" value="Create" />
-                                <input id="save" type="submit" value="Back" />
-                            </p>
-                        </td>
-                    </tr>
-                </table>
+                <fieldset>
+
+                            <legend>Create new catalogue</legend>
+                            <form:label	for="name" path="name" cssErrorClass="error">Name</form:label>
+                            <form:input path="name" />
+                            <form:errors path="name" />
+
+                            <form:hidden path="id" id="id" /><br />
+                            <a class="btn btn-primary" href="#" onclick="createButton_onClick()">Create</a>
+
+
+
+                </fieldset>
             </form:form>
         </div>
     </div>
 
     <br/>
 
-<table>
+<h2>List of all catalogues</h2>
+<table class="table table-striped">
+
+    <tr>
+    <td>Catalog ID</td><td></td>
+    </tr>
+
+
     <c:forEach var="o" items="${catalogs}">
         <tr>
             <form:form method="DELETE" action="catalogue/${o.id}">
-                <td><a href="catalogue/${o.id}">${o.id} ${o.name}</a></td><td><input type="submit" value="Delete"></td>
+                <td><a href="catalogue/${o.id}">${o.name}</a></td><td><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick()">DELETE!</a></td>
             </form:form>
         </tr>
     </c:forEach>

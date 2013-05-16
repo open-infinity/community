@@ -49,11 +49,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 
@@ -126,7 +122,7 @@ public class ProductController {
 	@Log
 	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL) 
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Map<String, ? extends Object> create(@Valid @RequestBody ProductModel productModel, HttpServletResponse response) {
+	public String create(@Valid @ModelAttribute ProductModel productModel, HttpServletResponse response) {
 
 
         //logger.debug(productModel);
@@ -143,7 +139,7 @@ public class ProductController {
             logger.error(id);
 
 
-            return new ModelMap("id", id);
+            return "redirect:/productModel";
 	//	} else {
 	//		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 	//		return getValidationMessages(failures);

@@ -4,10 +4,11 @@
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-		<div class="container">
-			<br />
+
+
+
 			<h2>
-				Edit Product
+				Add new product
 			</h2>
 			<br />
 			<div class="sub_menu"><b>Please Define The Product Information</b></div>
@@ -15,7 +16,7 @@
 			<div id="statusbox"></div>
 			<br/>
 			<div id="productForm" class="span-12 last">	
-				<form:form modelAttribute="productModel" action="product" method="POST">
+				<form:form modelAttribute="productModel" action="productModel" method="POST">
 					<table id="productTable">
 						<tr>
 							<td><form:label	for="name" path="name" cssErrorClass="error">Name</form:label></td>
@@ -51,6 +52,7 @@
 								<p>	
 									<form:hidden path="id" id="id" />
 									<input id="save" type="submit" value="Save" />
+
 								</p>
 							</td>
 							<td></td>
@@ -61,6 +63,7 @@
 			</div>	
 		</div>
 
+        <div class ="container">
 		    <table>
                 <c:forEach var="o" items="${products}">
 
@@ -69,7 +72,7 @@
                     </tr>
                 </c:forEach>
             </table>
-
+        </div>
 
 
 		<c:set var="model" value="productModel" />

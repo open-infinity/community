@@ -2,13 +2,15 @@
 <%@ page session="false"%>
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<br />
-	<h2>Open Infinity - Team B</h2>
-	<br />
-	<div class="sub_menu"><b>The Shopping Application</b></div>
-	<br />	
-	<p><spring:message code="server.time"/> ${serverTime}.</p>
-		<br/><br/>
-		<a href="manager">View Shopping lists</a> or <a href="productModel">Create a new product</a> or <a href="manager/shoppinglist">Manage Shoppinglists</a>  or <a href="manager/shoppinglist">Manage Catalogues</a>
-		<br/><br/>
+	<div class="jumbotron">
+        <h2>Open Infinity - Team B</h2>
+        <br />
+        <div class="sub_menu"><b>The Shopping Application</b></div>
+        <br />
+        <p><spring:message code="server.time"/> ${serverTime}.</p>
+            <br/><br/>
+            <a class="btn btn-large btn-primary" href="#">New shoppinglist</a>
+            <br/><br/>
+
+	</div>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
