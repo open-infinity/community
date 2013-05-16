@@ -1,7 +1,7 @@
 <%-- 
     Document   : catalogue
     Created on : 15.5.2013, 19:10:23
-    Author     : jarno
+    Author     : Jarno Knihtilä
 --%>
 <%@ page session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

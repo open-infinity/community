@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
- * @author jknihtil
+ * @author Jarno Knihtilä
  */
 @Controller
 public class LoginController {

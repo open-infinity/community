@@ -53,9 +53,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * Product controller for m-v-c binding and service orchestration.
- *
- * @author Ilkka Leinonen
+ * @author Jarno Knihtilä
  */
 @Controller
 @RequestMapping(value = "/productModel")

@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  *
- * @author jknihtil
+ * @author Jarno Knihtilä
  */
 public interface RoleRepository extends MongoRepository<Role, String> {
     

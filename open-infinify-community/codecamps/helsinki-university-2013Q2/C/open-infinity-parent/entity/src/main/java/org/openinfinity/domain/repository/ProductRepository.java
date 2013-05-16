@@ -23,7 +23,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * Product repository interface.
  *
- * @author Ilkka Leinonen
+ * @author Jarno Knihtilä
  */
 public interface ProductRepository extends MongoRepository<Product, BigInteger> {
 

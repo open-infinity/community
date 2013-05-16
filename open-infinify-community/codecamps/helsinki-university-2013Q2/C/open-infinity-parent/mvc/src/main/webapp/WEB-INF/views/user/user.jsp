@@ -1,3 +1,7 @@
+<%-- 
+    Author     : Jarno Knihtilä
+--%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

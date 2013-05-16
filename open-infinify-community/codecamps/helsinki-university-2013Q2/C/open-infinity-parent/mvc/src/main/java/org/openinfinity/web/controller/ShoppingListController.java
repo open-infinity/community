@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author jknihtil
+ * @author Jarno Knihtilä
  */
 @Controller
 @RequestMapping(value = "/shoppingList")
