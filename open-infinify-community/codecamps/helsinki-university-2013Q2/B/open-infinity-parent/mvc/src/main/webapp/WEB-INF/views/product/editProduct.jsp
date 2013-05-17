@@ -10,9 +10,9 @@
          $('#productModel').submit();
         }
 
-        function deleteButton_onClick() {
-         $('#command').submit();
-        }
+        function deleteButton_onClick(id) {
+         $("#"+id).submit();
+         }
     </script>
 
 
@@ -72,8 +72,8 @@
 
         <c:forEach var="o" items="${products}">
             <tr>
-                <form:form method="DELETE" action="product/${o.id}">
-                <td><a href="product/${o.id}">${o.name}</a></td><td>${o.description}</td><td>${o.company}</td><td>${o.price} &euro;</td><td><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick()">Delete</a></td>
+                <form:form id="${o.id}" method="DELETE" action="product/${o.id}">
+                <td><b>${o.name}</b></td><td>${o.description}</td><td>${o.company}</td><td>${o.price} &euro;</td><td><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick('${o.id}')">Delete</a></td>
                 </form:form>
             </tr>
         </c:forEach>

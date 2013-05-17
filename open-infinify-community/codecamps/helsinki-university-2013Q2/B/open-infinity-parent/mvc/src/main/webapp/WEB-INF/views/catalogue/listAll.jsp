@@ -9,8 +9,8 @@
      $('#catalogueModel').submit();
     }
 
-    function deleteButton_onClick() {
-     $('#command').submit();
+    function deleteButton_onClick(id) {
+     $("#"+id).submit();
     }
 
     </script>
@@ -23,7 +23,7 @@
             <form:form commandName="catalogueModel" action="catalogue" method="post">
                 <fieldset>
 
-                            <legend>Create new catalogueId</legend>
+                            <legend>Create new catalogue</legend>
                             <form:label	for="name" path="name" cssErrorClass="error">Name</form:label>
                             <form:input path="name" />
                             <form:errors path="name" />
@@ -44,14 +44,14 @@
 <table class="table table-striped">
 
     <tr>
-    <td>Catalog ID</td><td>Name</td><td></td>
+    <td>Catalog ID</td><td></td>
     </tr>
 
 
     <c:forEach var="o" items="${catalogs}">
         <tr>
-            <form:form method="DELETE" action="catalogue/${o.id}">
-                <td width="40%"><a href="catalogue/${o.id}">${o.id}<td width="40%"> ${o.name}</td> </a></td><td width="20%"><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick()">Delete</a></td>
+            <form:form id="${o.id}" method="DELETE" action="catalogue/${o.id}">
+                <td width="40%"><a href="catalogue/${o.id}">${o.name}</td> </a></td><td width="20%"><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick('${o.id}')">Delete</a></td>
             </form:form>
         </tr>
     </c:forEach>

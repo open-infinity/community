@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-<h2>List of products in catalogue <c:out value="${name}"/> </h2>
+<h2>List of products in shoppin list <c:out value="${name}"/> </h2>
 
 <table class="table table-striped">
 
@@ -19,8 +19,6 @@
         </tr>
     </c:forEach>
 </table>
-
-
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
