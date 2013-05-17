@@ -44,14 +44,14 @@
 <table class="table table-striped">
 
     <tr>
-    <td>Catalog ID</td><td></td>
+    <td>Catalog ID</td><td>Name</td><td></td>
     </tr>
 
 
     <c:forEach var="o" items="${catalogs}">
         <tr>
             <form:form method="DELETE" action="catalogue/${o.id}">
-                <td><a href="catalogue/${o.id}">${o.id} ${o.name}</a></td><td><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick()">Delete</a></td>
+                <td width="40%"><a href="catalogue/${o.id}">${o.id}<td width="40%"> ${o.name}</td> </a></td><td width="20%"><a class="btn btn-danger btn-small" href="#" onclick="deleteButton_onClick()">Delete</a></td>
             </form:form>
         </tr>
     </c:forEach>
