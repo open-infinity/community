@@ -19,6 +19,7 @@ import org.openinfinity.core.annotation.AuditTrail;
 import org.openinfinity.core.annotation.Log;
 import org.openinfinity.core.exception.ExceptionLevel;
 import org.openinfinity.core.util.ExceptionUtil;
+import org.openinfinity.domain.entity.Catalogue;
 import org.openinfinity.domain.entity.Product;
 import org.openinfinity.domain.repository.CatalogueRepository;
 import org.openinfinity.domain.repository.ProductRepository;
@@ -41,6 +42,9 @@ public class ProductServiceImpl extends CRUDServiceImpl<Product, ProductReposito
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CatalogueService catalogueService;
 
     public ProductServiceImpl(){
 
@@ -68,5 +72,21 @@ public class ProductServiceImpl extends CRUDServiceImpl<Product, ProductReposito
         productRepository.create(product);
         return product.getId();
     }
+
+
+
+    @Override
+    @Transactional
+    public void delete(Product product) {
+        for(Catalogue c : catalogueService.loadAll()){
+            if(c.getProducts().contains(product)){
+                c.removeProduct(product);
+                catalogueService.update(c);
+                break;
+            }
+        }
+        productRepository.delete(product);
+    }
+
 
 }

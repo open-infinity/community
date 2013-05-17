@@ -44,13 +44,13 @@ public class ProductWrapper {
 	@Id @NotScript
 	private String id;
 
-	@NotScript @NotNull @NonNull
+	@NotScript @NotNull @NonNull @Size(min=1)
 	private String name;
 
-	@NotScript @NotNull @NonNull
+	@NotScript @NotNull @NonNull @Size(min=1)
 	private String company;
 
-	@NotScript @NotNull @NonNull
+	@NotScript @NotNull @NonNull @Size(min=1)
 	private String description;
 
 	@NumberFormat @DecimalMin("0.00") @NotNull @NonNull

@@ -25,7 +25,7 @@
         <div id="statusbox"></div>
         <br/>
         <div id="shoppinglistForm" class="span-12 last">
-            <form:form commandName="shoppingListModel" action="shoppinglist" method="post">
+            <form:form modelAttribute="shoppingListModel" action="shoppinglist" method="post">
                 <fieldset>
 
                             <legend>Create new shopping list</legend>

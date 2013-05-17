@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -90,7 +91,7 @@ public class ShoppingListController {
         List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>(shoppingListService.loadAll());
 
         model.addAttribute("shoppinglists", shoppingLists);
-        model.addAttribute(new ShoppingListModel());
+        model.addAttribute("shoppingListModel", new ShoppingListModel());
 
         return "shoppinglist/myshoplist";
     }
@@ -118,8 +119,12 @@ public class ShoppingListController {
     @Log
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
     @RequestMapping(method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute ShoppingListModel shoppingListModel) {
-
+    public String create(@Valid @ModelAttribute("shoppingListModel") ShoppingListModel shoppingListModel, BindingResult result, Model model) {
+        if(result.hasErrors()){
+            List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>(shoppingListService.loadAll());
+            model.addAttribute("shoppinglists", shoppingLists);
+            return "shoppinglist/myshoplist";
+        }
         logger.error("asdf!!!!!!!!!!!!!!");
 
         shoppingListService.create(shoppingListModel.getShoppingList());

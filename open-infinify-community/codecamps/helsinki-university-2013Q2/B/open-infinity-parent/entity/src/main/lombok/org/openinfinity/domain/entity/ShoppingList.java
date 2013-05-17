@@ -28,6 +28,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Shopping list entity.
@@ -41,7 +42,7 @@ public class ShoppingList implements RepositoryItem {
 	@Id @NotScript
 	private String id;
 
-    @NotScript @NonNull @NotNull
+    @NotScript @NotNull @NonNull @Size(min = 1, max=100)
     private String name;
 
 	private Collection<Product> products = Collections.checkedCollection(new ArrayList<Product>(), Product.class);
