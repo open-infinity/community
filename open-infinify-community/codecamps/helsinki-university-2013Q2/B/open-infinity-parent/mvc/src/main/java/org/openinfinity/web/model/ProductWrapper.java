@@ -26,6 +26,8 @@ import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 /**
@@ -54,7 +56,9 @@ public class ProductWrapper {
 	@NumberFormat @DecimalMin("0.00") @NotNull @NonNull
 	private BigDecimal price;
 
-    @NotScript @NotNull @NonNull
+    //@NotNull
+    @Pattern(regexp = "(\\w)+", message = "Invalid id: you need to create catalogue first")
+    @Size(min = 3, message = "Invalid id: you need to create catalogue first")
     private String catalogueId;
 
     public String getId() {

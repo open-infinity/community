@@ -33,6 +33,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Catalogue entity.
@@ -48,7 +49,7 @@ public class Catalogue implements RepositoryItem {
 	@Id @NotScript
 	private String id;
 
-    @NotScript @NotNull @NonNull
+    @NotScript @NotNull @NonNull @Size(min = 1, max=100)
     private String name;
 
     //@OneToMany(mappedBy = "catalogue", cascade = {CascadeType.ALL})

@@ -19,10 +19,16 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.NonNull;
 import org.apache.log4j.Logger;
+import org.openinfinity.core.annotation.NotScript;
 import org.openinfinity.domain.entity.Product;
 import org.openinfinity.domain.service.CatalogueService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * Product model for exposing product domain to view. 
@@ -36,6 +42,9 @@ public class ProductModel extends ProductWrapper {
 
     private Product product;
 
+//  @NotNull
+    @Pattern(regexp = "(\\w)+", message = "Invalid id: you need to create catalogue first")
+    @Size(min = 3, message = "Invalid id: you need to create catalogue first")
     private String catalogueId;
 
 	private Map<String, Collection<String>> errorStatuses = new HashMap<String, Collection<String>>();

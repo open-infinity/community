@@ -50,6 +50,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -115,16 +116,7 @@ public class ProductController {
 	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
 	@RequestMapping(method = RequestMethod.GET)
 	public String manageProducts(Model model) {
-        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
-        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
-        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
-        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
-        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
-        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
-        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
-        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
-        logger.debug("GET!!!!!!!!!!!!!!!!!!!!!!!");
-        model.addAttribute(new ProductModel());
+        model.addAttribute("productModel", new ProductModel());
         model.addAttribute("catalogs", new ArrayList<Catalogue>(catalogueService.loadAll()));
         model.addAttribute("products", new ArrayList<Product>(productService.loadAll()));
 		return "product/editProduct";
@@ -133,7 +125,13 @@ public class ProductController {
 	@Log
 	@AuditTrail(argumentStrategy=ArgumentStrategy.ALL) 
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute ProductModel productModel) {
+	public String create(@Valid @ModelAttribute("productModel") ProductModel productModel, BindingResult result, Model model) {
+        if(result.hasErrors()){
+            model.addAttribute("catalogs", new ArrayList<Catalogue>(catalogueService.loadAll()));
+            model.addAttribute("products", new ArrayList<Product>(productService.loadAll()));
+            return "product/editProduct";
+        }
+
         logger.debug("POST "+productModel.getProduct());
         Product product = productModel.getProduct();
 
@@ -142,7 +140,7 @@ public class ProductController {
         catalogue.addProduct(product);
         catalogueService.update(catalogue);
 
-        //model.addAttribute(new ProductModel());
+
         return "redirect:/manager/product";
 	}
 

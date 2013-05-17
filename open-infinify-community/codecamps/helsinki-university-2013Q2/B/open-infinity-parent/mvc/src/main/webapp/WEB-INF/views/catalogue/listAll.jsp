@@ -20,7 +20,7 @@
         <div id="statusbox"></div>
         <br/>
         <div id="catalogueForm" class="span-12 last">
-            <form:form commandName="catalogueModel" action="catalogue" method="post">
+            <form:form modelAttribute="catalogueModel" action="catalogue" method="post">
                 <fieldset>
 
                             <legend>Create new catalogueId</legend>

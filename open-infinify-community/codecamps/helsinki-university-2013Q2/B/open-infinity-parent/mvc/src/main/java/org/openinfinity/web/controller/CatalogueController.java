@@ -29,6 +29,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -97,18 +98,10 @@ public class CatalogueController {
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
     @RequestMapping(method = RequestMethod.GET)
     public String manageCatalogues(Model model){
-        Product testProduct = new Product();
-        testProduct.setName("testinimi");
-        testProduct.setCompany("company");
-        testProduct.setPrice(BigDecimal.ONE);
-        testProduct.setDescription("blaablaa");
-        //productService.create(testProduct);
-
-        //List<Product> catalogs = new ArrayList<Product>(productService.loadAll());
         List<Catalogue> catalogs = new ArrayList<Catalogue>(catalogueService.loadAll());
 
         model.addAttribute("catalogs", catalogs);
-        model.addAttribute(new CatalogueModel());
+        model.addAttribute("catalogueModel", new CatalogueModel());
 
         return "catalogue/listAll";
     }
@@ -143,7 +136,13 @@ public class CatalogueController {
     @Log
     @AuditTrail(argumentStrategy=ArgumentStrategy.ALL)
     @RequestMapping(method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute CatalogueModel catalogueModel) {
+    public String create(@Valid @ModelAttribute("catalogueModel") CatalogueModel catalogueModel, BindingResult result, Model model) {
+        if(result.hasErrors()){
+            List<Catalogue> catalogs = new ArrayList<Catalogue>(catalogueService.loadAll());
+            model.addAttribute("catalogs", catalogs);
+            return "catalogue/listAll";
+        }
+
         String id = catalogueService.create(catalogueModel.getCatalogue());
 
         return "redirect:/manager/catalogue";
