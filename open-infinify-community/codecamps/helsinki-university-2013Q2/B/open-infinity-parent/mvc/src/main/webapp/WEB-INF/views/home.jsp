@@ -1,3 +1,4 @@
+<!--@author Samir Puuska-->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>

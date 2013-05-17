@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Joosa Kurvinen
+ * @author Samir Puuska
  */
 @Controller
 @RequestMapping(value = "/manager/catalogue")

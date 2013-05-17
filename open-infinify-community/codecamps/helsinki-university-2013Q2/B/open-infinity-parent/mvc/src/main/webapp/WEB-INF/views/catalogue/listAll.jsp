@@ -4,6 +4,8 @@
 <%@ include file="/WEB-INF/views/common/includes.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
+<!--@author Samir Puuska-->
+
     <script>
     function createButton_onClick() {
      $('#catalogueModel').submit();

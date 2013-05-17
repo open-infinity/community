@@ -30,6 +30,7 @@ import java.util.*;
 
 /**
  * @author Joosa Kurvinen
+ * @author Samir Puuska
  */
 @Controller
 @RequestMapping(value = "/manager/shoppinglist")

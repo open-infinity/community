@@ -59,6 +59,7 @@ import org.springframework.web.bind.annotation.*;
  * 
  * @author Ilkka Leinonen
  * @author Joosa Kurvinen
+ * @author Samir Puuska
  */
 @Controller
 @RequestMapping(value = "/manager/product")
