@@ -1,0 +1,4 @@
+User manual: The system is an online bulletin board. The home page provides the user with a list of buildings. Currently, we have added three different buildings showing them by their address. Choosing each building will direct the user to the associated board (building). Please reload the main page if the list of buildings is empty. Then, in the board page, there is an add button to add stickers to the board. Adding Email and Password for a sticker is used to authenticate the user when deleting the sticker from the board. 
+Currently comment on sticker is not working.
+
+

@@ -1,0 +1,267 @@
+/* 
+    Author: Emad Nikkhouy
+    Email: emad.nikkhouy@gmail.com
+*/
+
+.sticker{
+
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 17px;
+    width:300px;
+    height:200px;
+    background-color: beige;
+    border: solid black 1px;
+    padding: 2px;
+    overflow-style: auto;
+    display:inline-block;
+    font-family:"Reenie Beanie",arial,sans-serif;
+    font-size:100%;
+    overflow:hidden;
+    padding:3em;
+    -webkit-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    -moz-transform:rotate(-5deg);
+}
+del.sticker{
+
+
+    width:0;
+    height:0;
+
+}
+.sticker:nth-child(even){
+    -o-transform:rotate(4deg);
+    -webkit-transform:rotate(4deg);
+    -moz-transform:rotate(4deg);
+    position:relative;
+    top:5px;
+    background:#cfc;
+}
+.sticker:nth-child(3n){
+    -o-transform:rotate(-3deg);
+    -webkit-transform:rotate(-3deg);
+    -moz-transform:rotate(-3deg);
+    position:relative;
+    top:-5px;
+    background:#ccf;
+}
+.sticker:nth-child(5n) {
+    -o-transform:rotate(5deg);
+    -webkit-transform:rotate(5deg);
+    -moz-transform:rotate(5deg);
+    position:relative;
+    top:-10px;
+}
+.sticker:hover, .sticker:focus{
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+    -webkit-transform: scale(1.25);
+    -moz-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    position:relative;
+    z-index:5;
+}
+
+.reportText {
+    position: fixed;
+    bottom: 5px;
+    right:15px;
+}
+
+.link {
+    color:#3399FF;
+    text-decoration: none;
+}
+.link:hover {
+    color:#FF0000;
+}
+
+.delSticker{
+    position: fixed;
+    top: 5px;
+    right:15px;
+}
+
+.commOnSticker {
+    position: fixed;
+    bottom: 5px;
+    left: 20px; 
+}
+
+div.hidden
+{
+    visibility: hidden;
+}
+
+
+
+
+.commentSticker{
+
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    margin-right: auto;
+    margin-left: auto;
+    width:600px;
+    height:600px;
+    background-color: beige;
+    border: solid black 1px;
+    padding: 2px;
+    overflow-style: auto;
+
+    font-family:"Reenie Beanie",arial,sans-serif;
+    font-size:100%;
+    overflow:hidden;
+    padding:3em;
+    z-index: 20;
+    alignment-adjust: central;
+
+
+}
+
+body{
+    background-image:url("/board/resources/img/BulletinBoard.jpg");
+
+}
+
+.headerTitle{
+    font-family: cursive;
+    font-size: xx-large;
+    font-weight: bold;
+    color: blue;
+
+}
+
+.deleteSticker{
+
+    /*    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+        min-width:250px;
+        min-height:200px;
+        margin-left: 22px;
+        margin-top: 20px;
+        overflow-style: auto;
+        background-color: beige;
+        font-family:"Reenie Beanie",arial,sans-serif;
+        font-size:100%;
+        overflow: hidden;
+        display:inline-block;*/
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    margin-left: 20px;
+
+    text-align: center;
+    width:300px;
+    height:200px;
+    background-color:transparent;
+
+    overflow-style: auto;
+    display:inline-block;
+    font-family:"Reenie Beanie",arial,sans-serif;
+    font-size:100%;
+    overflow:hidden;
+    padding:3em;
+    z-index: 5;
+
+
+}
+.deleteSticker:nth-child(even){
+
+    background:#cfc;
+}
+.deleteSticker:nth-child(3n){
+
+    background:#ccf;
+}
+
+.deleteButton {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.deleteButton {
+    border-top: 1px solid #96d1f8;
+    background: #65a9d7;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ced9e0), to(#65a9d7));
+    background: -webkit-linear-gradient(top, #ced9e0, #65a9d7);
+    background: -moz-linear-gradient(top, #ced9e0, #65a9d7);
+    background: -ms-linear-gradient(top, #ced9e0, #65a9d7);
+    background: -o-linear-gradient(top, #ced9e0, #65a9d7);
+    padding: 5px 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.deleteButton:hover {
+    border-top-color: #60b6f0;
+    background: #60b6f0;
+    color: #291f29;
+}
+.deleteButton:active {
+    border-top-color: #307bad;
+    background: #307bad;
+}
+
+.textBox {
+    background: white;
+    border: 1px solid #ffa853;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 3px #ffa853;
+    color: #666;
+    float: left;
+    padding: 5px 10px;
+    width: 165px;
+    outline: none;
+}
+
+.firstPageBackground{
+    /*    background: url("/board/resources/img/bulletin_board2.jpg");
+        background-repeat: no-repeat;
+        background-attachment:fixed;
+        background-position: center;*/
+    background: none;
+}
+
+.centerOfPage {
+
+    left: 0;
+    line-height: 200px;
+    margin: auto;
+    margin-top: -100px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+
+}
+
+.dropdown {
+    width: 500px;
+    height: 50px;
+    overflow: hidden;
+    background: url(new_arrow.png) no-repeat right #ddd;
+    border: 1px solid #ccc;
+    text-indent: 150px;
+    font-size: larger;
+    font-weight: bold;
+    font-family: cursive;
+    color: #60b6f0;
+    
+    
+    /*margin:auto;*/
+}
+
+.firstPageHeader{
+    font-family: cursive;
+    color: #3399FF;
+    
+}
